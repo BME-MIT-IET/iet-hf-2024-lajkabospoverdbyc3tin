@@ -249,7 +249,7 @@ public class Pump extends Active
     @Override
     public int ConnectPipe(Pipe pipe)
     {
-        if (connectedPipes.size() < maxConnectedPipes - 1)
+        if (connectedPipes.size() < maxConnectedPipes)
         {
             return super.ConnectPipe(pipe);
         }

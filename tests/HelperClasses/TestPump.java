@@ -10,6 +10,10 @@ public class TestPump extends Pump {
         super(maxConnectedPipes);
     }
 
+    public static int getInstanceNr() {
+        return instanceNr;
+    }
+
     public int getInstanceOfPump() {
         return instanceNr;
     }
