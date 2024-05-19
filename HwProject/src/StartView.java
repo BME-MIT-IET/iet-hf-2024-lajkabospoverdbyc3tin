@@ -1,3 +1,6 @@
+package HwProject.src;
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

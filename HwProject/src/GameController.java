@@ -1,3 +1,6 @@
+package HwProject.src;
+
+
 import javax.swing.JFrame;
 import java.awt.*;
 import java.util.ArrayList;
@@ -31,7 +34,7 @@ public class GameController implements iObserver
         mainFrame.setVisible(true);
     }
 
-    public void startGame(int n, int water)
+    public void startGame(int n)
     {   
         for(int i = 1; i <= n; i++)
         {
@@ -62,12 +65,12 @@ public class GameController implements iObserver
         for (Field field : GameModel.game.fields)
         {
             if(field.getID().startsWith("Drain") && field.players.size() <=min)
-            min = field.players.size();
+                min = field.players.size();
         }
         for (Field field : GameModel.game.fields)
         {
             if(field.getID().startsWith("Drain") && field.players.size() <=min)
-            return field;
+                return field;
         }
         return null;
        
@@ -79,12 +82,12 @@ public class GameController implements iObserver
         for (Field field : GameModel.game.fields)
         {
             if(field.getID().startsWith("Source") && field.players.size() <=min)
-            min = field.players.size();
+                min = field.players.size();
         }
         for (Field field : GameModel.game.fields)
         {
             if(field.getID().startsWith("Source") && field.players.size() <=min)
-            return field;
+                return field;
         }
         return null;
        
@@ -94,7 +97,7 @@ public class GameController implements iObserver
 
     @Override
     public void notifyGameUpdated(Game g) {
-        gameFieldView.UpdateView(g);
+        gameFieldView.updateView(g);
     }
 
     @Override
@@ -104,12 +107,12 @@ public class GameController implements iObserver
 
     @Override
     public void notifyGameStart(int players, int water) {
-        startGame(players, water);
+        startGame(players);
     }
 
     @Override
     public void notifyCommandSent(String command) {
-        model.PerformAction(command);
+        model.performAction(command);
     }
 
     @Override

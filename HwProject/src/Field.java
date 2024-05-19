@@ -1,3 +1,5 @@
+package HwProject.src;
+
 import java.io.PrintStream;
 import java.util.ArrayList;
 
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 public abstract class Field
 {
     public static final int SUCCESS = 0;
+    private static final String LOG_FIELD = "Field - ";
 
 
     /**
@@ -99,22 +102,6 @@ public abstract class Field
         return true;
     }
 
-    /**
-     * Player típusú objektumot vár, amelyet a metódus hozzáad a players nevű
-     * listához
-     *
-     * @param player játékos
-     * @return Hibakod
-     */
-    public int initAddPlayer(Player player)
-    {
-        players.add(player);
-        if (debugEnabled)
-        {
-            debugOutput.println("Field - " + this + ": Sikeres hozzaadas");
-        }
-        return SUCCESS;
-    }
 
     /**
      * Player típusú objektumot vár, amelyet a metódus hozzáad a players nevű

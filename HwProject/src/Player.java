@@ -1,3 +1,6 @@
+package HwProject.src;
+
+
 import java.io.PrintStream;
 import java.util.ArrayList;
 
@@ -30,7 +33,7 @@ public abstract class Player
     {
         this.id = id;
         this.position = position;
-        position.initAddPlayer(this);
+        position.addPlayer(this);
         if (debugEnabled)
         {
             debugOutput.println("Player - " + this + ": Sikeres inicializalas");
@@ -64,7 +67,7 @@ public abstract class Player
      * @param id A keresett azonosito
      * @return A meghatarozott azonositoju pumpa
      */
-    public Pump getPumpFromInventoryByID(String ID)
+    public Pump getPumpFromInventoryByID(String id)
     {
         return null;
     }
@@ -75,7 +78,7 @@ public abstract class Player
      * @param id A keresett azonosito
      * @return A meghatarozott azonositoju cso
      */
-    public Pipe getPipeFromInventoryByID(String ID)
+    public Pipe getPipeFromInventoryByID(String id)
     {
         return null;
     }

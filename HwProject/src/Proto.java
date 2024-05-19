@@ -1,6 +1,6 @@
-import java.io.IOException;
-import java.io.PrintStream;
-import java.io.FileOutputStream;
+package HwProject.src;
+
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
