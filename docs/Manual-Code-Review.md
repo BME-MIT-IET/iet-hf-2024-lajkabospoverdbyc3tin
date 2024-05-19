@@ -65,3 +65,13 @@ Moving forward, addressing the remaining magic numbers, further enhancing encaps
 
 
 ### Approximate Time Spent: 6 hours
+
+## Static analysis using SonarLint
+
+- Conducted a comprehensive static analysis of the codebase using SonarLint.
+- Identified and researched various errors and issues flagged by the tool.
+- Fixed errors and issues where it seemed necessary and beneficial to the overall code quality.
+- Refactored sections of the code to ensure compliance with coding standards and best practices.
+- Discussed specific cases with teammates where I did not agree with the analyzer's findings, reaching a consensus on the best course of action.
+
+## Approximate Time Spent: 4 hours
