@@ -1,4 +1,3 @@
-
 /**
  * A városokban található ciszterna. A szerelők csapata ide gyűjti a vizet. Egy
  * speciális példánya jelképezi a homokot. Ez a példány tartja nyilván a

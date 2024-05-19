@@ -1,4 +1,5 @@
-
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Map;
@@ -134,6 +135,7 @@ public class GameFieldView extends View
         for(Player player : game.players)
         {
             players.put(player.getID(), player.position.getID());
+            //System.out.println(player.GetID()+ "   "+player.position.GetID());
         }
 
 

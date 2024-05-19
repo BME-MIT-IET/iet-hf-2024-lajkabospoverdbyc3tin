@@ -1,4 +1,3 @@
-
 import javax.swing.JFrame;
 import java.awt.*;
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class GameController implements iObserver
         mainFrame.setVisible(true);
     }
 
-    public void startGame(int n)
+    public void startGame(int n, int water)
     {   
         for(int i = 1; i <= n; i++)
         {
@@ -63,12 +62,12 @@ public class GameController implements iObserver
         for (Field field : GameModel.game.fields)
         {
             if(field.getID().startsWith("Drain") && field.players.size() <=min)
-                min = field.players.size();
+            min = field.players.size();
         }
         for (Field field : GameModel.game.fields)
         {
             if(field.getID().startsWith("Drain") && field.players.size() <=min)
-                return field;
+            return field;
         }
         return null;
        
@@ -80,12 +79,12 @@ public class GameController implements iObserver
         for (Field field : GameModel.game.fields)
         {
             if(field.getID().startsWith("Source") && field.players.size() <=min)
-                min = field.players.size();
+            min = field.players.size();
         }
         for (Field field : GameModel.game.fields)
         {
             if(field.getID().startsWith("Source") && field.players.size() <=min)
-                return field;
+            return field;
         }
         return null;
        
@@ -95,7 +94,7 @@ public class GameController implements iObserver
 
     @Override
     public void notifyGameUpdated(Game g) {
-        gameFieldView.updateView(g);
+        gameFieldView.UpdateView(g);
     }
 
     @Override
@@ -105,12 +104,12 @@ public class GameController implements iObserver
 
     @Override
     public void notifyGameStart(int players, int water) {
-        startGame(players);
+        startGame(players, water);
     }
 
     @Override
     public void notifyCommandSent(String command) {
-        model.performAction(command);
+        model.PerformAction(command);
     }
 
     @Override
