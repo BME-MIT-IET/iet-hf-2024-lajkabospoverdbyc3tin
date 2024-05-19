@@ -1,4 +1,3 @@
-
 /**
  * Az osztály a nomádok csapatának példányait reprezentálja. A nomádok ki tudják
  * lyukasztani a csöveket és át tudják állítani a pumpákat.
