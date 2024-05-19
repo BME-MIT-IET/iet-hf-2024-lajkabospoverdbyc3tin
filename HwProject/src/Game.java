@@ -1,3 +1,5 @@
+package HwProject.src;
+
 
 import java.io.PrintStream;
 import java.util.ArrayList;

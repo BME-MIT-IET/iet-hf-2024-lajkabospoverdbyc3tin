@@ -1,3 +1,5 @@
+package HwProject.src;
+
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -35,7 +37,7 @@ public class PanelView extends View
         setBackground(Color.BLACK);
 		setLayout(new GridLayout(3, 1));
 		renderPanel();
-		updatePlayer(model.game.players);
+		updatePlayer(GameModel.game.players);
 		setBorder(BorderFactory.createLineBorder(Color.WHITE, 5));
         setVisible(true);
 
