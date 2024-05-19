@@ -25,22 +25,22 @@ Expected Result:
     Mechanic1 steps on the twelfth pipe
 Result:
 
-    Game ended with Mechanics winning
+    Mechanic1 steps on the twelfth pipe
 Status:
 
-    Failed
+    Passed
 
 ------------
 ### Test 3: Saboteur moves to an occupied pipe
 Command:
 
-    Move Saboteur1 Pipe12
+    Move Saboteur3 Pipe2
 Expected Result:
 
     Error message indicating that the pipe is already occupied by Mechanic1.
 Result:
 
-    Game ended with Mechanics winning
+    Nothing happened
 Status:
 
     Failed
@@ -50,13 +50,13 @@ Status:
 ### Test 4: Mechanic moves to an occupied pipe
 Command:
 
-    Move Mechanic1 Pipe2
+    Move Mechanic3 Pipe12
 Expected Result:
 
     Error message indicating that the pipe is already occupied by Saboteur1.
 Result:
 
-    Game ended with Mechanics winning
+    Nothing happened
 Status:
 
     Failed
@@ -72,7 +72,7 @@ Expected Result:
     Error message indicating that the pipe does not exist.
 Result:
 
-    Game ended with Mechanics winning
+    Null pointer exception
 Status:
 
     Failed
@@ -88,7 +88,7 @@ Expected Result:
     Error message indicating that the pipe does not exist.
 Result:
 
-    Game ended with Mechanics winning
+    Null pointer exception
 Status:
 
     Failed
@@ -103,7 +103,7 @@ Expected Result:
     Error message indicating that the entity does not exist.
 Result:
 
-    Game ended with Mechanics winning
+    "Ervenytelen parancs" exception
 Status:
 
     Failed
@@ -121,10 +121,10 @@ Expected Result:
     Game state showing Saboteur1 at Pipe3 and Mechanic1 at Pipe13.
 Result:
 
-    Game ended with Mechanics winning
+    Game state showing Saboteur1 at Pipe3 and Mechanic1 at Pipe13.
 Status:
 
-    Failed
+    Passed
 
 ------------
 ### Test 9: Game state after a series of movements involving both Saboteur1 and Mechanic1
@@ -139,10 +139,10 @@ Expected Result:
     Game state showing Saboteur1 at Pipe3 and Mechanic1 at Pipe13.
 Result:
 
-    Game ended with Mechanics winning
+    Game state showing Saboteur1 at Pipe3 and Mechanic1 at Pipe13.
 Status:
 
-    Failed
+    Passed
 
 ------------
 ### Test 10: Saboteur tries to move to a blocked pipe
@@ -154,7 +154,7 @@ Expected Result:
     Error message indicating that the pipe is blocked.
 Result:
 
-    Game ended with Mechanics winning
+    Nothing happened
 Status:
 
     Failed
@@ -170,7 +170,7 @@ Expected Result:
     Appropriate error message indicating that the pipe is already occupied by another Saboteur.
 Result:
 
-    Game ended with Mechanics winning
+    Nothing happened
 Status:
 
     Failed
@@ -186,7 +186,7 @@ Expected Result:
     Appropriate error message indicating that the pipe is already occupied by another Mechanic.
 Result:
 
-    Game ended with Mechanics winning
+    Nothing happened
 Status:
 
     Failed
@@ -201,7 +201,7 @@ Expected Result:
     Appropriate error message indicating that the pipe is blocked.
 Result:
 
-    Game ended with Mechanics winning
+    Nothing happened
 Status:
 
     Failed
@@ -216,7 +216,7 @@ Expected Result:
     Appropriate error message indicating that the pipe is blocked.
 Result:
 
-    Game ended with Mechanics winning
+    Nothing happened
 Status:
 
     Failed
@@ -231,7 +231,7 @@ Expected Result:
     Appropriate error message indicating that the pipe is broken.
 Result:
 
-    Game ended with Mechanics winning
+    Nothing happened
 Status:
 
     Failed
@@ -246,7 +246,7 @@ Expected Result:
     Appropriate error message indicating that the pipe is broken.
 Result:
 
-    Game ended with Mechanics winning
+    Nothing happened
 Status:
 
     Failed
@@ -261,7 +261,7 @@ Expected Result:
     Appropriate error message indicating that the Saboteur cannot repair pipes.
 Result:
 
-    Game ended with Mechanics winning
+    Nothing happened
 Status:
 
     Failed
@@ -273,40 +273,40 @@ Command:
     Repair Mechanic1 Pipe13
 Expected Result:
 
-    Confirmation message indicating that the pipe has been repaired.
+    Pipe13 is repaired
 Result:
 
-    Game ended with Mechanics winning
+    Pipe13 is repaired
 Status:
 
-    Failed
+    Passed
 
 ------------
 ### Test 19: Saboteur breaks a pipe
 Command:
 
-    Break Saboteur1 Pipe2
+    Damage Saboteur1 Pipe2
 Expected Result:
 
-    Confirmation message indicating that the pipe has been broken.
+    Pipe2 is broken
 Result:
 
-    Game ended with Mechanics winning
+    Pipe2 is broken
 Status:
 
-    Failed
+    Passed
 
 ------------
 ### Test 20: Mechanic tries to break a pipe
 Command:
 
-    Break Mechanic1 Pipe2
+    Damage Mechanic1 Pipe2
 Expected Result:
 
     Appropriate error message indicating that the Mechanic cannot break pipes.
 Result:
 
-    Game ended with Mechanics winning
+    Nothing happened
 Status:
 
     Failed
@@ -321,7 +321,7 @@ Expected Result:
     Appropriate error message indicating that the pipe is already broken.
 Result:
 
-    Game ended with Mechanics winning
+    Nothing happened
 Status:
 
     Failed
@@ -336,7 +336,7 @@ Expected Result:
     Appropriate error message indicating that the pipe is not broken.
 Result:
 
-    Game ended with Mechanics winning
+    Nothing happened
 Status:
 
     Failed
@@ -350,13 +350,13 @@ Command:
     Move Saboteur1 Pipe12
 Expected Result:
 
-    Confirmation message indicating that Saboteur1 has moved to the repaired pipe.
+    Saboteur1 moves to Pipe12
 Result:
 
-    Game ended with Mechanics winning
+    Saboteur1 moves to Pipe12
 Status:
 
-    Failed
+    Passed
 
 ------------
 ### Test 24: Mechanic tries to move to a pipe that is broken and then repaired
@@ -367,13 +367,13 @@ Command:
     Move Mechanic1 Pipe12
 Expected Result:
 
-    Confirmation message indicating that Mechanic1 has moved to the repaired pipe.
+    Mechanic1 moves to Pipe12
 Result:
 
-    Game ended with Mechanics winning
+    Mechanic1 moves to Pipe12
 Status:
 
-    Failed
+    Passed
 
 ------------
 ### Test 25: Saboteur tries to break a pipe that is occupied by a Mechanic
@@ -385,7 +385,7 @@ Expected Result:
     Appropriate error message indicating that the pipe cannot be broken because it is occupied by a Mechanic.
 Result:
 
-    Game ended with Mechanics winning
+    Nothing happened
 Status:
 
     Failed
@@ -400,7 +400,7 @@ Expected Result:
     Appropriate error message indicating that the pipe cannot be repaired because it is occupied by a Saboteur.
 Result:
 
-    Game ended with Mechanics winning
+    Nothing happened
 Status:
 
     Failed
@@ -413,13 +413,13 @@ Command:
     Move Saboteur1 Pipe12
 Expected Result:
 
-    Confirmation message indicating that Saboteur1 has moved to the pipe that was vacated by Mechanic1.
+    Saboteur1 moves to Pipe12
 Result:
 
-    Game ended with Mechanics winning
+    Saboteur1 moves to Pipe12
 Status:
 
-    Failed
+    Passed
 
 ------------
 ### Test 28: Mechanic tries to move to a pipe that is occupied by a Saboteur and then vacated
@@ -430,12 +430,12 @@ Command:
     Move Mechanic1 Pipe2
 Expected Result:
 
-    Confirmation message indicating that Mechanic1 has moved to the pipe that was vacated by Saboteur1.
+    Mechanic1 moves to Pipe2
 Result:
 
-    Game ended with Mechanics winning
+    Mechanic1 moves to Pipe2
 Status:
 
-    Failed
+    Passed
 
 ------------
