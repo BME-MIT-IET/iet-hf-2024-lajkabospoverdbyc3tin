@@ -1,3 +1,5 @@
+package src;
+
 /**
  * A városokban található ciszterna. A szerelők csapata ide gyűjti a vizet. Egy
  * speciális példánya jelképezi a homokot. Ez a példány tartja nyilván a
@@ -25,6 +27,15 @@ public class Drain extends Active
         Drain.game = game;
     }
 
+    public static Game GetGame()
+    {
+        return game;
+    }
+
+    public static int GetInstanceNr()
+    {
+        return instanceNr;
+    }
     /**
      * Konstruktor
      */
