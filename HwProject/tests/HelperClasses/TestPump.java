@@ -1,7 +1,6 @@
-package HwProject.tests.HelperClasses;
+package tests.HelperClasses;
 
-import HwProject.src.Pipe;
-import HwProject.src.Pump;
+import src.*;
 
 /**
  *     Pump subclass for testing, only added setters and getters for each private and protected field
@@ -9,6 +8,10 @@ import HwProject.src.Pump;
 public class TestPump extends Pump {
     public TestPump(int maxConnectedPipes) {
         super(maxConnectedPipes);
+    }
+
+    public static int getInstanceNr() {
+        return instanceNr;
     }
 
     public int getInstanceOfPump() {
