@@ -1,5 +1,5 @@
-package tests.HelperClasses;
-import src.*;
+package HwProject.tests.HelperClasses;
+import HwProject.src.*;
 public class TestSaboteur extends Saboteur {
 
     public TestSaboteur(String ID, Field position) {
