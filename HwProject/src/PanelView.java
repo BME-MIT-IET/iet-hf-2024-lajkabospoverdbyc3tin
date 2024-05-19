@@ -35,7 +35,7 @@ public class PanelView extends View
         setBackground(Color.BLACK);
 		setLayout(new GridLayout(3, 1));
 		renderPanel();
-		updatePlayer(GameModel.game.players);
+		updatePlayer(model.game.players);
 		setBorder(BorderFactory.createLineBorder(Color.WHITE, 5));
         setVisible(true);
 
