@@ -1,6 +1,4 @@
-package HwProject.tests.HelperClasses;
-
-import tests.HelperClasses.TestPipe;
+package tests.HelperClasses;
 
 public class TestCleanup {
 
