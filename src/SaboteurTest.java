@@ -3,10 +3,8 @@ package src;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tests.HelperClasses.TestCleanup;
-import tests.HelperClasses.TestSaboteur;
-
-import static org.junit.jupiter.api.Assertions.*;
+import HwProject.tests.HelperClasses.TestCleanup;
+import HwProject.tests.HelperClasses.TestSaboteur;
 
 class SaboteurTest {
     private Game game;
