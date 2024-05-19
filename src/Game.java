@@ -1,3 +1,5 @@
+package src;
+
 import java.io.PrintStream;
 import java.util.ArrayList;
 
@@ -45,6 +47,10 @@ public class Game
         Player.debugEnabled = debugEnabled;
     }
 
+    public void AddField(Field field)
+    {
+        fields.add(field);
+    }
     /**
      * Konstruktor
      */
