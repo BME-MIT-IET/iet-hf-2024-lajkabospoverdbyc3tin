@@ -1,14 +1,15 @@
-package src;
-
 import java.io.PrintStream;
 import java.util.ArrayList;
 
 /**
- * A játékpálya egy eleme/mezője. Ősosztálya az aktív elemeknek és a csőnek. Egy
+ * A játékpálya egy eleme/mezője. ösosztálya az aktív elemeknek és a csőnek. Egy
  * játékos megkísérelhet rálépni. Tartalmaz alapértelmezett implemetnációkat
  */
 public abstract class Field
 {
+    public static final int SUCCESS = 0;
+
+
     /**
      * Engedelyezett-e a kommunikacio
      */
@@ -65,7 +66,7 @@ public abstract class Field
      *
      * @return A mezo azonositoja
      */
-    public String GetID()
+    public String getID()
     {
         return id;
     }
@@ -77,14 +78,14 @@ public abstract class Field
     /**
      * lépés
      */
-    public abstract void Step();
+    public abstract void step();
 
     /**
      * PLACEHOLDER
      *
      * @return PLACEHOLDER
      */
-    protected boolean IsPlayerRemoveable()
+    protected boolean isPlayerRemoveable()
     {
         return true;
     }
@@ -94,7 +95,7 @@ public abstract class Field
      *
      * @return PLACEHOLDER
      */
-    protected boolean IsPlayerAddable()
+    protected boolean isPlayerAddable()
     {
         return true;
     }
@@ -106,14 +107,14 @@ public abstract class Field
      * @param player játékos
      * @return Hibakod
      */
-    public int InitAddPlayer(Player player)
+    public int initAddPlayer(Player player)
     {
         players.add(player);
         if (debugEnabled)
         {
             debugOutput.println("Field - " + this + ": Sikeres hozzaadas");
         }
-        return 0;
+        return SUCCESS;
     }
 
     /**
@@ -123,14 +124,14 @@ public abstract class Field
      * @param player játékos
      * @return Hibakod
      */
-    protected int AddPlayer(Player player)
+    protected int addPlayer(Player player)
     {
         players.add(player);
         if (debugEnabled)
         {
             debugOutput.println("Field - " + this + ": Sikeres hozzaadas");
         }
-        return 0;
+        return SUCCESS;
     }
 
     /**
@@ -139,7 +140,7 @@ public abstract class Field
      * @param player játékos
      * @return Hibakod
      */
-    protected int RemovePlayer(Player player)
+    protected int removePlayer(Player player)
     {
         if (players.remove(player))
         {
@@ -147,7 +148,7 @@ public abstract class Field
             {
                 debugOutput.println("Field - " + this + ": Sikeres eltavolitas");
             }
-            return 0;
+            return SUCCESS;
         }
         else
         {
@@ -165,14 +166,14 @@ public abstract class Field
      * @param player játékos
      * @return PLACEHOLDER
      */
-    public Field MovePlayer(Player player)
+    public Field movePlayer(Player player)
     {
-        if (IsNeighbour(player.position))
+        if (isNeighbour(player.position))
         {
-            if (IsPlayerAddable() && player.position.IsPlayerRemoveable())
+            if (isPlayerAddable() && player.position.isPlayerRemoveable())
             {
-                AddPlayer(player);
-                player.position.RemovePlayer(player);
+                addPlayer(player);
+                player.position.removePlayer(player);
                 return this;
             }
             else
@@ -201,12 +202,12 @@ public abstract class Field
      *
      * @param field mező
      */
-    public abstract boolean IsNeighbour(Field field);
+    public abstract boolean isNeighbour(Field field);
 
     /**
      * Kiírja a szomszédokat
      */
-    public abstract void ListNeighbours();
+    public abstract void listNeighbours();
 
     /**
      * Beállítja a pumpa ki-és bemenetet
@@ -215,7 +216,7 @@ public abstract class Field
      * @param output kimenet
      * @return Hibakod
      */
-    public int SetPumpDirection(Pipe input, Pipe output)
+    public int setPumpDirection(Pipe input, Pipe output)
     {
         return 1;
     }
@@ -225,7 +226,7 @@ public abstract class Field
      *
      * @return Hibakod
      */
-    public int Repair()
+    public int repair()
     {
         return 1;
     }
@@ -235,7 +236,7 @@ public abstract class Field
      *
      * @return Hibakod
      */
-    public int Damage()
+    public int damage()
     {
         return 1;
     }
@@ -246,7 +247,7 @@ public abstract class Field
      * @param pump pumpa
      * @return Hibakod
      */
-    public int PlacePump(Pump pump)
+    public int placePump(Pump pump)
     {
         return 1;
     }
@@ -256,7 +257,7 @@ public abstract class Field
      *
      * @return A felvett pumpa
      */
-    public Pump PickUpPump()
+    public Pump pickUpPump()
     {
         return null;
     }
@@ -266,7 +267,7 @@ public abstract class Field
      *
      * @return Hibakod
      */
-    public int MakeSlippy()
+    public int makeSlippy()
     {
         return 1;
     }
@@ -276,7 +277,7 @@ public abstract class Field
      *
      * @return Hibakod
      */
-    public int MakeSticky()
+    public int makeSticky()
     {
         return 1;
     }
@@ -287,7 +288,7 @@ public abstract class Field
      * @param pipe csö
      * @return Hibakod
      */
-    public int ConnectPipe(Pipe pipe)
+    public int connectPipe(Pipe pipe)
     {
         return 1;
     }
@@ -298,7 +299,7 @@ public abstract class Field
      * @param pipe csö
      * @return Hibakod
      */
-    public int DisconnectPipe(Pipe pipe)
+    public int disconnectPipe(Pipe pipe)
     {
         return 1;
     }
@@ -308,7 +309,7 @@ public abstract class Field
      *
      * @return A felvett cso
      */
-    public Pipe PickUpPipe()
+    public Pipe pickUpPipe()
     {
         return null;
     }

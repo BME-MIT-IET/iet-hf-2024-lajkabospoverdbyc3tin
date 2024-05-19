@@ -1,5 +1,3 @@
-package src;
-
 /**
  * A hegyekben található források. Innen származik a végtelen mennyiségű víz,
  * melyet a csapatok a játék során gyűjtenek.
@@ -25,9 +23,9 @@ public class Source extends Active
      * lépés a játékban
      */
     @Override
-    public void Step()
+    public void step()
     {
-        PushWater();
+        pushWater();
         if (debugEnabled)
         {
             debugOutput.println("");
@@ -37,11 +35,11 @@ public class Source extends Active
     /**
      * Nyomja a vizet
      */
-    protected void PushWater()
+    protected void pushWater()
     {
         for (Pipe pipe : connectedPipes)
         {
-            pipe.RecieveWater(Integer.MAX_VALUE);
+            pipe.recieveWater(Integer.MAX_VALUE);
         }
         if (debugEnabled)
         {

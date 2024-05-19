@@ -1,5 +1,3 @@
-package src;
-
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
@@ -41,7 +39,7 @@ public class GameFieldView extends View
 			protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
 
-				RenderGameField(g);
+				renderGameField(g);
 			}
 
 		};
@@ -115,25 +113,25 @@ public class GameFieldView extends View
 
         for(Field field : game.fields)
         {
-            if (field.GetID().startsWith("Pump")) {
-                pumps.put(field.GetID(), pumpPoints[pumpIndex]);
-                directions.put(field.GetID(), field.getdirection());
+            if (field.getID().startsWith("Pump")) {
+                pumps.put(field.getID(), pumpPoints[pumpIndex]);
+                directions.put(field.getID(), field.getdirection());
                 pumpIndex++;
             } 
-            else if (field.GetID().startsWith("Drain")) {
-                drains.put(field.GetID(), drainPoints[drainIndex]);
+            else if (field.getID().startsWith("Drain")) {
+                drains.put(field.getID(), drainPoints[drainIndex]);
                 drainIndex++;
             } 
-            else if (field.GetID().startsWith("Source")) {
-                sources.put(field.GetID(), sourcePoints[sourceIndex]);
+            else if (field.getID().startsWith("Source")) {
+                sources.put(field.getID(), sourcePoints[sourceIndex]);
                 sourceIndex++;            } 
-            else if (field.GetID().startsWith("Pipe")) {
-                pipes.put(field.GetID(), new String[]{field.getends().get(0).GetID(), field.getends().get(1).GetID()});
+            else if (field.getID().startsWith("Pipe")) {
+                pipes.put(field.getID(), new String[]{field.getends().get(0).getID(), field.getends().get(1).getID()});
             }
         }
         for(Player player : game.players)
         {
-            players.put(player.GetID(), player.position.GetID());
+            players.put(player.getID(), player.position.getID());
             //System.out.println(player.GetID()+ "   "+player.position.GetID());
         }
 
@@ -142,7 +140,7 @@ public class GameFieldView extends View
 
 
     
-	public void RenderGameField(Graphics g)
+	public void renderGameField(Graphics g)
 	{	
           // Render the pipes
 		   for (Map.Entry<String, String[]> entry : pipes.entrySet()) 
@@ -379,31 +377,31 @@ public class GameFieldView extends View
         Random random = new Random();
     
         for (Field field : game.fields) {
-            if (field.GetID().startsWith("Pump")) {
-                if (!pumps.containsKey(field.GetID())) {    
-                    pumps.put(field.GetID(), new Point(random.nextInt(600) + 100, random.nextInt(250) + 150));
+            if (field.getID().startsWith("Pump")) {
+                if (!pumps.containsKey(field.getID())) {    
+                    pumps.put(field.getID(), new Point(random.nextInt(600) + 100, random.nextInt(250) + 150));
                 }
-                directions.put(field.GetID(), field.getdirection());    
-            } else if (field.GetID().startsWith("Drain")) {
-                if (!drains.containsKey(field.GetID())) {
-                    drains.put(field.GetID(), new Point(random.nextInt(600) + 100, random.nextInt(100) + 450));
+                directions.put(field.getID(), field.getdirection());    
+            } else if (field.getID().startsWith("Drain")) {
+                if (!drains.containsKey(field.getID())) {
+                    drains.put(field.getID(), new Point(random.nextInt(600) + 100, random.nextInt(100) + 450));
                 }
-            } else if (field.GetID().startsWith("Source")) {
-                if (!sources.containsKey(field.GetID())) {
-                    sources.put(field.GetID(), new Point(random.nextInt(600) + 100, random.nextInt(150) + 50));
+            } else if (field.getID().startsWith("Source")) {
+                if (!sources.containsKey(field.getID())) {
+                    sources.put(field.getID(), new Point(random.nextInt(600) + 100, random.nextInt(150) + 50));
                 }
-            } else if (field.GetID().startsWith("Pipe")) {
+            } else if (field.getID().startsWith("Pipe")) {
 
-                String pipeID = field.GetID();
+                String pipeID = field.getID();
                 if(pipes.containsKey(pipeID) &&  field.getends().size() <2)
                 pipes.remove(pipeID);
                 else if (!pipes.containsKey(pipeID) && field.getends().size() ==2) {
-                    pipes.put(pipeID, new String[]{field.getends().get(0).GetID(), field.getends().get(1).GetID()});
+                    pipes.put(pipeID, new String[]{field.getends().get(0).getID(), field.getends().get(1).getID()});
                 } 
                 if(pipes.containsKey(pipeID)) {
                     String[] ends = pipes.get(pipeID);
-                    if (!ends[0].equals(field.getends().get(0).GetID()) || !ends[1].equals(field.getends().get(1).GetID())) {
-                        pipes.put(pipeID, new String[]{field.getends().get(0).GetID(), field.getends().get(1).GetID()});
+                    if (!ends[0].equals(field.getends().get(0).getID()) || !ends[1].equals(field.getends().get(1).getID())) {
+                        pipes.put(pipeID, new String[]{field.getends().get(0).getID(), field.getends().get(1).getID()});
                     }
                 }
                 if(!field.getstates().isEmpty())
@@ -412,7 +410,7 @@ public class GameFieldView extends View
 
         }
         for (Player player : game.players) {
-            players.put(player.GetID(), player.position.GetID());
+            players.put(player.getID(), player.position.getID());
         }
 
         repaint();

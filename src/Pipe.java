@@ -1,5 +1,3 @@
-package src;
-
 import java.util.ArrayList;
 
 /**
@@ -12,13 +10,7 @@ import java.util.ArrayList;
  */
 public class Pipe extends Field
 {
-    /**
-     * PLACEHOLDER
-     */
-    public static enum StickyStates
-    {
-        Sticky, StickyAndOccupied, None
-    };
+
 
     /**
      * Az adattag értéke határozza meg, hogy az adott osztályból eddig mennyi
@@ -42,11 +34,11 @@ public class Pipe extends Field
      */
     protected boolean isDamaged;
     /**
-     * PLACEHOLDER
+     * csuszos e az elem
      */
     protected boolean isSlippy;
     /**
-     * PLACEHOLDER
+     * enum, ragados-e az elem
      */
     public StickyStates stickyState;
 
@@ -59,14 +51,14 @@ public class Pipe extends Field
      */
     protected int protectedRounds;
 
-    protected int everysome = 0;
+    protected int tickCounter = 0;
 
     /**
      * beállítja a game változó értékét a megadott Game objektumra
      * 
      * @param game a jatek entitasa
      */
-    public static void SetGame(Game game)
+    public static void setGame(Game game)
     {
         Pipe.game = game;
     }
@@ -92,17 +84,17 @@ public class Pipe extends Field
      * kell, hogy aztán megint el lehessen rontani
      */
     @Override
-    public void Step()
+    public void step()
     {
         if (protectedRounds > 0)
         {
             protectedRounds--;
         }
-        everysome--;
-        if(everysome == 0)
+        tickCounter--;
+        if(tickCounter == 0)
         {
             stickyState = StickyStates.None;
-            everysome = 3;
+            tickCounter = 3;
         }
         
     }
@@ -140,10 +132,10 @@ public class Pipe extends Field
     /**
      * megvizsgalja hogy le lehet e venni a jatekost a csorol
      *
-     * @return PLACEHOLDER
+     * @return jatekos eltavolthato-e
      */
     @Override
-    protected boolean IsPlayerRemoveable()
+    protected boolean isPlayerRemoveable()
     {
         if (stickyState != StickyStates.Sticky)
         {
@@ -162,14 +154,14 @@ public class Pipe extends Field
     /**
      * megvizsgalja hogy hozza lehet e adni jatekost a csohoz
      *
-     * @return PLACEHOLDER
+     * @return 
      */
     @Override
-    protected boolean IsPlayerAddable()
+    protected boolean isPlayerAddable()
     {
-        if (!IsLoose())
+        if (!isLoose())
         {
-            if (IsFree())
+            if (isFree())
             {
                 return true;
             }
@@ -198,7 +190,7 @@ public class Pipe extends Field
      * @param player játékos
      * @return Hibakod
      */
-    protected int RemovePlayer(Player player)
+    protected int removePlayer(Player player)
     {
         if (players.remove(player))
         {
@@ -210,7 +202,7 @@ public class Pipe extends Field
             {
                 debugOutput.println("Pipe - " + this + ": Sikeres eltavolitas");
             }
-            return 0;
+            return SUCCESS;
         }
         else
         {
@@ -228,11 +220,11 @@ public class Pipe extends Field
      * @param player játékos
      * @return PLACEHOLDER
      */
-    public Field MovePlayer(Player player)
+    public Field movePlayer(Player player)
     {
-        if (IsNeighbour(player.position))
+        if (isNeighbour(player.position))
         {
-            if (IsPlayerAddable() && player.position.IsPlayerRemoveable())
+            if (isPlayerAddable() && player.position.isPlayerRemoveable())
             {
                 if (isSlippy)
                 {
@@ -242,10 +234,10 @@ public class Pipe extends Field
                     }
                     int neighbourIndex = 0;
                     Field neighbour = ends.get(neighbourIndex);
-                    if (neighbour.IsPlayerAddable())
+                    if (neighbour.isPlayerAddable())
                     {
-                        neighbour.AddPlayer(player);
-                        player.position.RemovePlayer(player);
+                        neighbour.addPlayer(player);
+                        player.position.removePlayer(player);
                         return neighbour;
                     }
                     else
@@ -260,8 +252,8 @@ public class Pipe extends Field
                 }
                 else
                 {
-                    AddPlayer(player);
-                    player.position.RemovePlayer(player);
+                    addPlayer(player);
+                    player.position.removePlayer(player);
                     return this;
                 }
             }
@@ -293,7 +285,7 @@ public class Pipe extends Field
      *              mező a Pipe objektum végpontja
      */
     @Override
-    public boolean IsNeighbour(Field field)
+    public boolean isNeighbour(Field field)
     {
         return ends.contains(field);
     }
@@ -304,7 +296,7 @@ public class Pipe extends Field
      * @return akkor tér vissza igazzal, ha a players lista üres, azaz nincs játékos
      *         az adott mezőn
      */
-    protected boolean IsFree()
+    protected boolean isFree()
     {
         return players.size() == 0;
     }
@@ -315,7 +307,7 @@ public class Pipe extends Field
      * @return igaz, ha az adott cső csak egyik végpontjával kapcsolódik másik
      *         mezőhöz.
      */
-    protected boolean IsLoose()
+    protected boolean isLoose()
     {
         return ends.size() < 2;
     }
@@ -327,9 +319,9 @@ public class Pipe extends Field
      * @param active a kapcsolando aktiv mezo
      * @return int
      */
-    public int ConnectActive(Active active)
+    public int connectActive(Active active)
     {
-        if (IsLoose())
+        if (isLoose())
         {
             if (!ends.contains(active))
             {
@@ -338,7 +330,7 @@ public class Pipe extends Field
                 {
                     debugOutput.println("Pipe - " + this + ": Sikeres felkapcsolas");
                 }
-                return 0;
+                return SUCCESS;
             }
             else
             {
@@ -365,18 +357,18 @@ public class Pipe extends Field
      * @param active a kapcsolando aktiv mezo
      * @return Hibakod
      */
-    public int DisconnectActive(Active active)
+    public int disconnectActive(Active active)
     {
-        if (IsFree())
+        if (isFree())
         {
             if (ends.remove(active))
             {
-                SpillWater();
+                spillWater();
                 if (debugEnabled)
                 {
                     debugOutput.println("Pipe - " + this + ": Sikeres lekapcsolas");
                 }
-                return 0;
+                return SUCCESS;
             }
             else
             {
@@ -405,7 +397,7 @@ public class Pipe extends Field
      * @param quantity Az atadando viz mennyisege
      * @return Az atadott viz mennyisege
      */
-    public int TransmitWater(int quantity)
+    public int transmitWater(int quantity)
     {
         int transmitted = Integer.min(quantity, waterLevel);
         waterLevel -= transmitted;
@@ -423,13 +415,13 @@ public class Pipe extends Field
      * @param quantity A fogadando viz mennyisege
      * @return A fogadott viz mennyisege
      */
-    public int RecieveWater(int quantity)
+    public int recieveWater(int quantity)
     {
         int recieved = Integer.min(quantity, maxWaterLevel - waterLevel);
         waterLevel += recieved;
-        if (isDamaged || IsLoose())
+        if (isDamaged || isLoose())
         {
-            SpillWater();
+            spillWater();
         }
         if (debugEnabled)
         {
@@ -442,9 +434,9 @@ public class Pipe extends Field
     /**
      * A kifolyo vizbol pontot ad
      */
-    protected void SpillWater()
+    protected void spillWater()
     {
-        game.AddSaboteurPoint(waterLevel);
+        game.addSaboteurPoint(waterLevel);
         waterLevel = 0;
         if (debugEnabled)
         {
@@ -456,7 +448,7 @@ public class Pipe extends Field
      * Kiírja a szomszédokat
      */
     @Override
-    public void ListNeighbours()
+    public void listNeighbours()
     {
         for (Active active : ends)
         {
@@ -471,7 +463,7 @@ public class Pipe extends Field
      * @return Hibakod
      */
     @Override
-    public int Repair()
+    public int repair()
     {
         if (isDamaged == true)
         {
@@ -481,7 +473,7 @@ public class Pipe extends Field
             {
                 debugOutput.println("Pipe - " + this + ": Sikeres javitas");
             }
-            return 0;
+            return SUCCESS;
         }
         else
         {
@@ -499,17 +491,17 @@ public class Pipe extends Field
      * @return Hibakod
      */
     @Override
-    public int Damage()
+    public int damage()
     {
         if (isDamaged == false && protectedRounds <= 0)
         {
             isDamaged = true;
-            SpillWater();
+            spillWater();
             if (debugEnabled)
             {
                 debugOutput.println("Pipe - " + this + ": Sikeres rongalas");
             }
-            return 0;
+            return SUCCESS;
         }
         else if (protectedRounds > 0)
         {
@@ -537,29 +529,29 @@ public class Pipe extends Field
      * @return Hibakod
      */
     @Override
-    public int PlacePump(Pump pump)
+    public int placePump(Pump pump)
     {
-        Repair();
+        repair();
         game.fields.add(pump);
         Pipe newPipe = new Pipe();
         game.fields.add(newPipe);
         ends.get(0).ReplacePipe(this, newPipe);
-        newPipe.ConnectActive(ends.get(0));
+        newPipe.connectActive(ends.get(0));
         ends.remove(0);
-        pump.ConnectPipe(this);
-        pump.ConnectPipe(newPipe);
+        pump.connectPipe(this);
+        pump.connectPipe(newPipe);
         if (debugEnabled)
         {
             debugOutput.println("Pipe - " + this + ": Sikeres pumpa lehelyezes");
         }
-        return 0;
+        return SUCCESS;
     }
 
     /**
      * Csúszóssá teszi
      */
     @Override
-    public int MakeSlippy()
+    public int makeSlippy()
     {
         if (isSlippy)
         {
@@ -576,7 +568,7 @@ public class Pipe extends Field
             {
                 debugOutput.println("Pipe - " + this + ": Sikeres csuszossa tetel");
             }
-            return 0;
+            return SUCCESS;
         }
     }
 
@@ -587,7 +579,7 @@ public class Pipe extends Field
      * @return 2: a cső már csúszós volt
      */
     @Override
-    public int MakeSticky()
+    public int makeSticky()
     {
         if (stickyState != StickyStates.None)
         {
@@ -604,9 +596,7 @@ public class Pipe extends Field
             {
                 debugOutput.println("Pipe - " + this + ": Sikeres ragadossa tetel");
             }
-            return 0;
+            return SUCCESS;
         }
     }
-
-
 }

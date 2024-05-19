@@ -1,5 +1,3 @@
-package src;
-
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.FileOutputStream;
@@ -24,21 +22,21 @@ public class Proto
     /**
      * az input alapján végez változtatást
      */
-    public static int Interpreter(String input)
+    public static int interpreter(String input)
     {
-        return Interpreter(input, null);
+        return interpreter(input, null);
     }
 
     /**
      * Az Interpreter metódus felelős a játékos parancsok értelmezéséért és
      * végrehajtásáért a játékban.
      */
-    public static int Interpreter(String input, Player player)
+    public static int interpreter(String input, Player player)
     {
         String[] command = input.split(" ");
         if (player == null && command.length > 1)
         {
-            player = game.GetPlayerByID(command[1]);
+            player = game.getPlayerByID(command[1]);
         }
         switch (command[0].toLowerCase())
         {
@@ -46,12 +44,12 @@ public class Proto
         {
             if (command[1].equals("on"))
             {
-                Game.SetDebugEnabled(true);
+                Game.setDebugEnabled(true);
                 return -2;
             }
             if (command[1].equals("off"))
             {
-                Game.SetDebugEnabled(false);
+                Game.setDebugEnabled(false);
                 return -2;
             }
             return -1;
@@ -62,60 +60,60 @@ public class Proto
         }
         case "listinventory":
         {
-            return player.ListInventory();
+            return player.listInventory();
         }
         case "listneighbours":
         {
-            return player.ListNeighbours();
+            return player.listNeighbours();
         }
         case "move":
         {
-            return player.Move(game.GetFieldByID(command[2]));
+            return player.move(game.getFieldByID(command[2]));
         }
         case "repair":
         {
-            return player.Repair();
+            return player.repair();
         }
         case "damage":
         {
-            return player.Damage();
+            return player.damage();
         }
         case "setpumpdirection":
         {
-            return player.SetPumpDirection((Pipe) game.GetFieldByID(command[2]),
-                    (Pipe) game.GetFieldByID(command[3]));
+            return player.setPumpDirection((Pipe) game.getFieldByID(command[2]),
+                    (Pipe) game.getFieldByID(command[3]));
         }
         case "placepump":
         {
-            return player.PlacePump(player.GetPumpFromInventoryByID(command[2]));
+            return player.placePump(player.getPumpFromInventoryByID(command[2]));
         }
         case "pickuppump":
         {
-            return player.PickUpPump();
+            return player.pickUpPump();
         }
         case "makeslippy":
         {
-            return player.MakeSlippy();
+            return player.makeSlippy();
         }
         case "makesticky":
         {
-            return player.MakeSticky();
+            return player.makeSticky();
         }
         case "connectpipe":
         {
-            return player.ConnectPipe(player.GetPipeFromInventoryByID(command[2]));
+            return player.connectPipe(player.getPipeFromInventoryByID(command[2]));
         }
         case "disconnectpipe":
         {
-            return player.DisconnectPipe((Pipe) game.GetFieldByID(command[2]));
+            return player.disconnectPipe((Pipe) game.getFieldByID(command[2]));
         }
         case "pickuppipe":
         {
-            return player.PickUpPipe();
+            return player.pickUpPipe();
         }
         case "step":
         {
-            game.Step();
+            game.step();
             return 0;
         }
         default:
@@ -132,7 +130,7 @@ public class Proto
      *
      * @throws IOException
      */
-    public static void GameMode() throws IOException
+    public static void gameMode() throws IOException
     {
         BufferedReader console = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("#############");
@@ -151,12 +149,12 @@ public class Proto
                 String input = console.readLine();
                 if (input.toLowerCase().equals("exit"))
                 {
-                    game.Exit();
+                    game.exit();
                     return;
                 }
                 else
                 {
-                    if (Interpreter(input, game.players.get(i)) != 0)
+                    if (interpreter(input, game.players.get(i)) != 0)
                     {
                         i--;
                     }
@@ -171,7 +169,7 @@ public class Proto
      *
      * @throws IOException
      */
-    public static void TestMode(String filename) throws IOException
+    public static void testMode(String filename) throws IOException
     {
         BufferedReader file = new BufferedReader(
                 new InputStreamReader(new FileInputStream("tests/" + filename + "/test.txt")));
@@ -185,7 +183,7 @@ public class Proto
         while (file.ready())
         {
             String input = file.readLine();
-            Interpreter(input);
+            interpreter(input);
         }
         file.close();
         if (Arrays.equals(Files.readAllBytes(Paths.get("tests/" + filename + "/expected.txt")),
@@ -204,25 +202,4 @@ public class Proto
             System.out.println("A teszt NEM az elvart kimenetet produkalta");
         }
     }
-
-    /**
-     * A bemeneti argumentum alapjan eldonti hogy milyen moot inditson
-     *
-     * @throws IOException
-     */
-   /*  public static void main(String[] args) throws IOException
-    {
-        if (args.length == 0)
-        {
-            game = new Game(System.out);
-            GameMode();
-        }
-        else
-        {
-            game = new Game(
-                    new PrintStream(new FileOutputStream("tests/" + args[0] + "/result.txt")));
-            TestMode(args[0]);
-        }
-    }
-    */
 }

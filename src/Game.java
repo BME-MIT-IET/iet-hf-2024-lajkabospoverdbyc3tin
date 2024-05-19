@@ -1,7 +1,7 @@
-package src;
-
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A játék elemeit (mezők és játékosok) és lefutásának legfontosabb függvényeit
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Game
 {
     /**
-     * Engedelyezett-e a kommunikacio
+     * Engedelyezett-e a bovitett hiba kimenet
      */
     protected static boolean debugEnabled;
     /**
@@ -29,114 +29,78 @@ public class Game
      * A fields eszköztár
      */
     protected ArrayList<Field> fields;
+    protected Map<String, Field> fieldMap;
     /**
      * players eszköztár
      */
     protected ArrayList<Player> players;
+    protected Map<String, Player> playerMap;
 
     /**
-     * metódus az adott osztályon belül hívható meg, és az osztály szintű
+     * Az osztály szintű
      * debugEnabled adattagot állítja be
      *
-     * @param debugEnabled ennek az értéke állítódik be az osztályokban
+     * @param debugEnabled ennek az értéke állítódik be
      */
-    public static void SetDebugEnabled(boolean debugEnabled)
+    public static void setDebugEnabled(boolean debugEnabled)
     {
         Game.debugEnabled = debugEnabled;
         Field.debugEnabled = debugEnabled;
         Player.debugEnabled = debugEnabled;
     }
 
-    public void AddField(Field field)
-    {
-        fields.add(field);
-    }
     /**
      * Konstruktor
      */
     public Game(PrintStream debugOutput)
     {
-        SetDebugEnabled(false);
+        setDebugEnabled(false);
         Game.debugOutput = debugOutput;
         Field.debugOutput = debugOutput;
         Player.debugOutput = debugOutput;
-        Drain.SetGame(this);
-        Pipe.SetGame(this);
+        Drain.setGame(this);
+        Pipe.setGame(this);
         mechanicPoints = 0;
         saboteurPoints = 0;
         fields = new ArrayList<>();
+        fieldMap = new HashMap<>();
         players = new ArrayList<>();
-        fields.add(new Pipe());
-        fields.add(new Pipe());
-        fields.add(new Pipe());
-        fields.add(new Pipe());
-        fields.add(new Pipe());
-        fields.add(new Pipe());
-        fields.add(new Pipe());
-        fields.add(new Pipe());
-        fields.add(new Pipe());
-        fields.add(new Pipe());
-        fields.add(new Pipe());
-        fields.add(new Pipe());
-        fields.add(new Pipe());
-        Field field;
-        field = new Source();
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe1"));
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe2"));
+        playerMap = new HashMap<>();
+        initializeFields();
+    }
+
+    /**
+     * Initializes fields and adds them to the fields list and fieldMap.
+     */
+    private void initializeFields()
+    {
+        for (int i = 0; i < 13; i++) {
+            Pipe pipe = new Pipe();
+            fields.add(pipe);
+            fieldMap.put("Pipe" + (i + 1), pipe);
+        }
+        addField(new Source(), "Source1", "Pipe1", "Pipe2");
+        addField(new Source(), "Source2", "Pipe3", "Pipe4");
+        addField(new Pump(10), "Pump1", "Pipe1", "Pipe6");
+        addField(new Pump(10), "Pump2", "Pipe2", "Pipe5", "Pipe7", "Pipe8");
+        addField(new Pump(10), "Pump3", "Pipe5", "Pipe9");
+        addField(new Pump(10), "Pump4", "Pipe7", "Pipe11");
+        addField(new Pump(10), "Pump5", "Pipe3", "Pipe6", "Pipe10", "Pipe12");
+        addField(new Pump(10), "Pump6", "Pipe4", "Pipe8", "Pipe9", "Pipe10", "Pipe13");
+        addField(new Drain(), "Drain1", "Pipe12");
+        addField(new Drain(), "Drain2", "Pipe11", "Pipe13");
+    }
+
+    /**
+     * Helper method to add a field to the game and connect it to pipes.
+     */
+    private void addField(Field field, String fieldID, String... pipeIDs)
+    {
+        for (String pipeID : pipeIDs) {
+            field.connectPipe((Pipe) getFieldByID(pipeID));
+        }
         fields.add(field);
-        field = new Source();
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe3"));
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe4"));
-        fields.add(field);
-        field = new Pump(10);
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe1"));
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe6"));
-        field.SetPumpDirection((Pipe) GetFieldByID("Pipe1"), (Pipe) GetFieldByID("Pipe6"));
-        fields.add(field);
-        field = new Pump(10);
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe2"));
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe5"));
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe7"));
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe8"));
-        field.SetPumpDirection((Pipe) GetFieldByID("Pipe5"), (Pipe) GetFieldByID("Pipe8"));
-        fields.add(field);
-        field = new Pump(10);
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe5"));
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe9"));
-        field.SetPumpDirection((Pipe) GetFieldByID("Pipe9"), (Pipe) GetFieldByID("Pipe5"));
-        fields.add(field);
-        field = new Pump(10);
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe7"));
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe11"));
-        field.SetPumpDirection((Pipe) GetFieldByID("Pipe7"), (Pipe) GetFieldByID("Pipe11"));
-        fields.add(field);
-        field = new Pump(10);
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe3"));
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe6"));
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe10"));
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe12"));
-        field.SetPumpDirection((Pipe) GetFieldByID("Pipe3"), (Pipe) GetFieldByID("Pipe12"));
-        fields.add(field);
-        field = new Pump(10);
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe4"));
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe8"));
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe9"));
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe10"));
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe13"));
-        field.SetPumpDirection((Pipe) GetFieldByID("Pipe8"), (Pipe) GetFieldByID("Pipe9"));
-        fields.add(field);
-        field = new Drain();
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe12"));
-        fields.add(field);
-        field = new Drain();
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe11"));
-        field.ConnectPipe((Pipe) GetFieldByID("Pipe13"));
-        fields.add(field);
-       /*players.add(new Mechanic("Mechanic1", GetFieldByID("Drain1")));
-        players.add(new Mechanic("Mechanic2", GetFieldByID("Drain2")));
-        players.add(new Saboteur("Saboteur1", GetFieldByID("Source1")));
-        players.add(new Saboteur("Saboteur2", GetFieldByID("Source2")));
-        */
+        fieldMap.put(fieldID, field);
     }
 
     /**
@@ -145,11 +109,11 @@ public class Game
      * @param ID A keresett azonosito
      * @return A meghatarozott azonositoju mezo
      */
-    public Field GetFieldByID(String ID)
+    public Field getFieldByID(String ID)
     {
         for (Field field : fields)
         {
-            if (field.GetID().equals(ID))
+            if (field.getID().equals(ID))
             {
                 return field;
             }
@@ -163,11 +127,11 @@ public class Game
      * @param ID A keresett azonosito
      * @return A meghatarozott azonositoju jatekos
      */
-    public Player GetPlayerByID(String ID)
+    public Player getPlayerByID(String ID)
     {
         for (Player player : players)
         {
-            if (player.GetID().equals(ID))
+            if (player.getID().equals(ID))
             {
                 return player;
             }
@@ -178,11 +142,11 @@ public class Game
     /**
      * Lépteti a játékosokat
      */
-    public void Step()
+    public void step()
     {
         for (Field field : fields)
         {
-            field.Step();
+            field.step();
         }
         if (debugEnabled)
         {
@@ -195,7 +159,7 @@ public class Game
      *
      * @param points a hozzaadando pontok
      */
-    public void AddMechanicPoint(int points)
+    public void addMechanicPoint(int points)
     {
         if (debugEnabled)
         {
@@ -209,7 +173,7 @@ public class Game
      *
      * @param points a hozzaadando pontok
      */
-    public void AddSaboteurPoint(int points)
+    public void addSaboteurPoint(int points)
     {
         if (debugEnabled)
         {
@@ -218,12 +182,12 @@ public class Game
         saboteurPoints += points;
     }
 
-    public int GetMechanicPoint()
+    public int getMechanicPoint()
     {
         return mechanicPoints;
     }
 
-    public int GetSaboteurPoint()
+    public int getSaboteurPoint()
     {
         return saboteurPoints;
     }
@@ -231,7 +195,7 @@ public class Game
     /**
      * A játékból való kilépés
      */
-    public void Exit()
+    public void exit()
     {
         debugOutput.println("");
         debugOutput.println("");

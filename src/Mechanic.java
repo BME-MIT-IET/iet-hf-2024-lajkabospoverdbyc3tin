@@ -1,5 +1,3 @@
-package src;
-
 import java.util.ArrayList;
 
 /**
@@ -36,11 +34,11 @@ public class Mechanic extends Player
      * @return A meghatarozott azonositoju pumpa
      */
     @Override
-    public Pump GetPumpFromInventoryByID(String ID)
+    public Pump getPumpFromInventoryByID(String ID)
     {
         for (Pump pump : pumps)
         {
-            if (pump.GetID().equals(ID))
+            if (pump.getID().equals(ID))
             {
                 return pump;
             }
@@ -55,11 +53,11 @@ public class Mechanic extends Player
      * @return A meghatarozott azonositoju cso
      */
     @Override
-    public Pipe GetPipeFromInventoryByID(String ID)
+    public Pipe getPipeFromInventoryByID(String ID)
     {
         for (Pipe pipe : pipes)
         {
-            if (pipe.GetID().equals(ID))
+            if (pipe.getID().equals(ID))
             {
                 return pipe;
             }
@@ -73,7 +71,7 @@ public class Mechanic extends Player
      * @return Hibakod
      */
     @Override
-    public int ListInventory()
+    public int listInventory()
     {
         for (Pipe pipe : pipes)
         {
@@ -93,11 +91,11 @@ public class Mechanic extends Player
         ArrayList<String> inventory = new ArrayList<>();
         for (Pump pump : pumps)
         {
-         inventory.add(pump.GetID());   
+         inventory.add(pump.getID());   
         }
         for (Pipe pipe : pipes)
         {
-            inventory.add(pipe.GetID());
+            inventory.add(pipe.getID());
         }
         return inventory;
     }
@@ -110,9 +108,9 @@ public class Mechanic extends Player
      * @return Hibakod
      */
     @Override
-    public int SetPumpDirection(Pipe input, Pipe output)
+    public int setPumpDirection(Pipe input, Pipe output)
     {
-        if (position.SetPumpDirection(input, output) == 0)
+        if (position.setPumpDirection(input, output) == 0)
         {
             if (debugEnabled)
             {
@@ -138,9 +136,9 @@ public class Mechanic extends Player
      * @return Hibakod
      */
     @Override
-    public int Repair()
+    public int repair()
     {
-        if (position.Repair() == 0)
+        if (position.repair() == 0)
         {
             if (debugEnabled)
             {
@@ -166,9 +164,9 @@ public class Mechanic extends Player
      * @return Hibakod
      */
     @Override
-    public int Damage()
+    public int damage()
     {
-        if (position.Damage() == 0)
+        if (position.damage() == 0)
         {
             if (debugEnabled)
             {
@@ -195,12 +193,12 @@ public class Mechanic extends Player
      * @return Hibakod
      */
     @Override
-    public int PlacePump(Pump pump)
+    public int placePump(Pump pump)
     {
-        if (position.PlacePump(pump) == 0)
+        if (position.placePump(pump) == 0)
         {
             pumps.remove(pump);
-            Move(pump);
+            move(pump);
             if (debugEnabled)
             {
                 debugOutput.println("Mechanic - " + this + ": Sikeres lepes");
@@ -225,9 +223,9 @@ public class Mechanic extends Player
      * @return Hibakod
      */
     @Override
-    public int PickUpPump()
+    public int pickUpPump()
     {
-        Pump newPump = position.PickUpPump();
+        Pump newPump = position.pickUpPump();
         if (newPump != null)
         {
             pumps.add(newPump);
@@ -255,9 +253,9 @@ public class Mechanic extends Player
      * @return Hibakod
      */
     @Override
-    public int MakeSticky()
+    public int makeSticky()
     {
-        if (position.MakeSticky() == 0)
+        if (position.makeSticky() == 0)
         {
             if (debugEnabled)
             {
@@ -284,9 +282,9 @@ public class Mechanic extends Player
      * @return Hibakod
      */
     @Override
-    public int ConnectPipe(Pipe pipe)
+    public int connectPipe(Pipe pipe)
     {
-        if (position.ConnectPipe(pipe) == 0)
+        if (position.connectPipe(pipe) == 0)
         {
             pipes.remove(pipe);
             if (debugEnabled)
@@ -314,9 +312,9 @@ public class Mechanic extends Player
      * @return Hibakod
      */
     @Override
-    public int DisconnectPipe(Pipe pipe)
+    public int disconnectPipe(Pipe pipe)
     {
-        if (position.DisconnectPipe(pipe) == 0)
+        if (position.disconnectPipe(pipe) == 0)
         {
             pipes.add(pipe);
             if (debugEnabled)
@@ -343,9 +341,9 @@ public class Mechanic extends Player
      * @return Hibakod
      */
     @Override
-    public int PickUpPipe()
+    public int pickUpPipe()
     {
-        Pipe newPipe = position.PickUpPipe();
+        Pipe newPipe = position.pickUpPipe();
         if (newPipe != null)
         {
             pipes.add(newPipe);
