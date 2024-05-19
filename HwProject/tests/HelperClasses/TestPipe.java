@@ -1,9 +1,8 @@
-package tests.HelperClasses;
+package HwProject.tests.HelperClasses;
 
-import src.*;
+import HwProject.src.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  *    Pipe subclass for testing, only added setters and getters for each private and protected field
@@ -21,7 +20,7 @@ public class TestPipe extends Pipe {
         this.waterLevel = waterLevel;
     }
 
-    public boolean getSplippy() {
+    public boolean getSlippy() {
         return this.isSlippy;
     }
 
@@ -36,6 +35,8 @@ public class TestPipe extends Pipe {
     public ArrayList<Player> getPlayers() {
         return players;
     }
+
+
 
     public boolean getDamage() {
         return isDamaged;
