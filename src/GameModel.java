@@ -1,5 +1,3 @@
-package src;
-
 import java.util.ArrayList;
 
 public class GameModel
@@ -28,7 +26,7 @@ public class GameModel
 	{	
 		for(iObserver observer : observers)
 		{
-			observer.NotifyGameUpdated(game);
+			observer.notifyGameUpdated(game);
 		}
 	}
 	
@@ -36,7 +34,7 @@ public class GameModel
 	{	
 		for(iObserver observer : observers)
 		{
-			observer.NotifyPlayerUpdated(players);
+			observer.notifyPlayerUpdated(players);
 		}
 	}
 
@@ -53,7 +51,7 @@ public class GameModel
 	{
 		for(iObserver observer : observers)
 		{
-			observer.NotifyCommandSent(command);;
+			observer.notifyCommandSent(command);;
 		}
 	}
 
@@ -61,7 +59,7 @@ public class GameModel
     {
         for(iObserver observer : observers)
         {
-            observer.NotifyGameEnded(winner);
+            observer.notifyGameEnded(winner);
         }
     }
 	
@@ -76,12 +74,12 @@ public class GameModel
 
 			NotifyObserversGameUpdated(game);
             NotifyObserversPlayerUpdated(game.players);
-            game.Step();
-            System.out.println(game.GetMechanicPoint());
-            System.out.println(game.GetSaboteurPoint());
-            if(game.GetMechanicPoint() >= watertarget)
+            game.step();
+            System.out.println(game.getMechanicPoint());
+            System.out.println(game.getSaboteurPoint());
+            if(game.getMechanicPoint() >= watertarget)
             NotifyObserversGameEnded("Mechanic");
-            if(game.GetSaboteurPoint() >= watertarget)
+            if(game.getSaboteurPoint() >= watertarget)
             NotifyObserversGameEnded("Saboteur");
             
 		}
@@ -101,7 +99,7 @@ public class GameModel
         String[] command = input.split(" ");
         if (player == null && command.length > 1)
         {
-            player = game.GetPlayerByID(command[1]);
+            player = game.getPlayerByID(command[1]);
         }
         
         switch (command[0].toLowerCase())
@@ -113,56 +111,57 @@ public class GameModel
         }
         case "listinventory":
         {
-            return player.ListInventory();
+            return player.listInventory();
         }
         case "listneighbours":
         {
-            return player.ListNeighbours();
+            return player.listNeighbours();
         }
         case "move":
         {	
-            return player.Move(game.GetFieldByID(command[2]));
+            System.out.println(command[2]);
+            return player.move(game.getFieldByID(command[2]));
         }
         case "repair":
         {
-            return player.Repair();
+            return player.repair();
         }
         case "damage":
         {
-            return player.Damage();
+            return player.damage();
         }
         case "changedirection":
         {
-            return player.SetPumpDirection((Pipe) game.GetFieldByID(command[2]),
-                    (Pipe) game.GetFieldByID(command[3]));
+            return player.setPumpDirection((Pipe) game.getFieldByID(command[2]),
+                    (Pipe) game.getFieldByID(command[3]));
         }
         case "placepump":
         {
-            return player.PlacePump(player.GetPumpFromInventoryByID(command[2]));
+            return player.placePump(player.getPumpFromInventoryByID(command[2]));
         }
         case "pickuppump":
         {
-            return player.PickUpPump();
+            return player.pickUpPump();
         }
         case "slippy":
         {
-            return player.MakeSlippy();
+            return player.makeSlippy();
         }
         case "sticky":
         {
-            return player.MakeSticky();
+            return player.makeSticky();
         }
         case "connectpipe":
         {
-            return player.ConnectPipe(player.GetPipeFromInventoryByID(command[2]));
+            return player.connectPipe(player.getPipeFromInventoryByID(command[2]));
         }
         case "disconnectpipe":
         {
-            return player.DisconnectPipe((Pipe) game.GetFieldByID(command[2]));
+            return player.disconnectPipe((Pipe) game.getFieldByID(command[2]));
         }
         case "pickuppipe":
         {
-            return player.PickUpPipe();
+            return player.pickUpPipe();
         }
         
         default:

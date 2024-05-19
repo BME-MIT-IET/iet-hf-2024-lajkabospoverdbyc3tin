@@ -1,5 +1,3 @@
-package src;
-
 /**
  * A városokban található ciszterna. A szerelők csapata ide gyűjti a vizet. Egy
  * speciális példánya jelképezi a homokot. Ez a példány tartja nyilván a
@@ -22,20 +20,11 @@ public class Drain extends Active
      *
      * @param game a jatek entitasa
      */
-    public static void SetGame(Game game)
+    public static void setGame(Game game)
     {
         Drain.game = game;
     }
 
-    public static Game GetGame()
-    {
-        return game;
-    }
-
-    public static int GetInstanceNr()
-    {
-        return instanceNr;
-    }
     /**
      * Konstruktor
      */
@@ -51,9 +40,9 @@ public class Drain extends Active
      * logikai változó értéke igaz, egy új sor kerül a kimenetre
      */
     @Override
-    public void Step()
+    public void step()
     {
-        PullWater();
+        pullWater();
         if (debugEnabled)
         {
             debugOutput.println("");
@@ -63,11 +52,11 @@ public class Drain extends Active
     /**
      * Szivja a vizet
      */
-    protected void PullWater()
+    protected void pullWater()
     {
         for (Pipe pipe : connectedPipes)
         {
-            game.AddMechanicPoint(pipe.TransmitWater(Integer.MAX_VALUE));
+            game.addMechanicPoint(pipe.transmitWater(Integer.MAX_VALUE));
         }
         if (debugEnabled)
         {
@@ -81,7 +70,7 @@ public class Drain extends Active
      * @return A felvett pumpa
      */
     @Override
-    public Pump PickUpPump()
+    public Pump pickUpPump()
     {
         Pump newPump = new Pump(5);
         //game.fields.add(newPump);
@@ -98,10 +87,10 @@ public class Drain extends Active
      * @return A felvett cso
      */
     @Override
-    public Pipe PickUpPipe()
+    public Pipe pickUpPipe()
     {
         Pipe newPipe = new Pipe();
-        ConnectPipe(newPipe);
+        connectPipe(newPipe);
         game.fields.add(newPipe);
         if (debugEnabled)
         {

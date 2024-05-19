@@ -1,5 +1,3 @@
-package src;
-
 import javax.swing.JFrame;
 import java.awt.*;
 import java.util.ArrayList;
@@ -33,7 +31,7 @@ public class GameController implements iObserver
         mainFrame.setVisible(true);
     }
 
-    public void StartGame(int n, int water)
+    public void startGame(int n, int water)
     {   
         for(int i = 1; i <= n; i++)
         {
@@ -57,7 +55,7 @@ public class GameController implements iObserver
 
     }
 
-    private void Endgame(String winner) {
+    private void endgame(String winner) {
         mainFrame.dispose();
         EndView endview = new EndView(winner);
     }
@@ -67,12 +65,12 @@ public class GameController implements iObserver
         int min = Integer.MAX_VALUE;
         for (Field field : GameModel.game.fields)
         {
-            if(field.GetID().startsWith("Drain") && field.players.size() <=min)
+            if(field.getID().startsWith("Drain") && field.players.size() <=min)
             min = field.players.size();
         }
         for (Field field : GameModel.game.fields)
         {
-            if(field.GetID().startsWith("Drain") && field.players.size() <=min)
+            if(field.getID().startsWith("Drain") && field.players.size() <=min)
             return field;
         }
         return null;
@@ -84,12 +82,12 @@ public class GameController implements iObserver
         int min = Integer.MAX_VALUE;
         for (Field field : GameModel.game.fields)
         {
-            if(field.GetID().startsWith("Source") && field.players.size() <=min)
+            if(field.getID().startsWith("Source") && field.players.size() <=min)
             min = field.players.size();
         }
         for (Field field : GameModel.game.fields)
         {
-            if(field.GetID().startsWith("Source") && field.players.size() <=min)
+            if(field.getID().startsWith("Source") && field.players.size() <=min)
             return field;
         }
         return null;
@@ -99,28 +97,28 @@ public class GameController implements iObserver
     
 
     @Override
-    public void NotifyGameUpdated(Game g) {
+    public void notifyGameUpdated(Game g) {
         gameFieldView.UpdateView(g);
     }
 
     @Override
-    public void NotifyPlayerUpdated(ArrayList<Player> players) {
-        panelView.UpdatePlayer(players);
+    public void notifyPlayerUpdated(ArrayList<Player> players) {
+        panelView.updatePlayer(players);
     }
 
     @Override
     public void notifyGameStart(int players, int water) {
-        StartGame(players, water);
+        startGame(players, water);
     }
 
     @Override
-    public void NotifyCommandSent(String command) {
+    public void notifyCommandSent(String command) {
         model.PerformAction(command);
     }
 
     @Override
-    public void NotifyGameEnded(String winner) {
-        Endgame(winner);
+    public void notifyGameEnded(String winner) {
+        endgame(winner);
     }
 
     

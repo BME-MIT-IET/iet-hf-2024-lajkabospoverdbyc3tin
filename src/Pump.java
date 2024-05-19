@@ -1,5 +1,3 @@
-package src;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -62,13 +60,13 @@ public class Pump extends Active
      * lépés a játékban
      */
     @Override
-    public void Step()
+    public void step()
     {
-        PushWater();
-        PullWater();
+        pushWater();
+        pullWater();
         if (randomEnabled)
         {
-            TrytoDamage();
+            trytoDamage();
         }
         if (debugEnabled)
         {
@@ -79,11 +77,11 @@ public class Pump extends Active
     /**
      * Nyomja a vizet
      */
-    protected void PushWater()
+    protected void pushWater()
     {
         if (!isDamaged && output != null)
         {
-            waterLevel -= output.RecieveWater(waterLevel);
+            waterLevel -= output.recieveWater(waterLevel);
             if (debugEnabled)
             {
                 debugOutput.println("Pump - " + this + ": Sikeres nyomas");
@@ -95,11 +93,11 @@ public class Pump extends Active
     /**
      * Szivja a vizet
      */
-    protected void PullWater()
+    protected void pullWater()
     {
         if (!isDamaged && input != null)
         {
-            waterLevel += input.TransmitWater(maxWaterLevel - waterLevel);
+            waterLevel += input.transmitWater(maxWaterLevel - waterLevel);
             if (debugEnabled)
             {
                 debugOutput.println("Pump - " + this + ": Sikeres szivas");
@@ -112,12 +110,12 @@ public class Pump extends Active
     {
         ArrayList<String> dir = new ArrayList<>();
         if(input != null)
-        dir.add(input.GetID());
+        dir.add(input.getID());
         else
         dir.add("N");
 
         if(output != null)
-        dir.add(output.GetID());
+        dir.add(output.getID());
         else
         dir.add("N");
 
@@ -128,7 +126,7 @@ public class Pump extends Active
      *
      * @return Hibakod
      */
-    public int TrytoDamage()
+    public int trytoDamage()
     {
         if (randomEnabled)
         {
@@ -191,9 +189,9 @@ public class Pump extends Active
      * @return Hibakod
      */
     @Override
-    public int SetPumpDirection(Pipe input, Pipe output)
+    public int setPumpDirection(Pipe input, Pipe output)
     {
-        if (IsNeighbour(input) && IsNeighbour(output))
+        if (isNeighbour(input) && isNeighbour(output))
         {
             this.input = input;
             this.output = output;
@@ -219,7 +217,7 @@ public class Pump extends Active
      * @return Hibakod
      */
     @Override
-    public int Repair()
+    public int repair()
     {
         if (isDamaged == true)
         {
@@ -247,11 +245,11 @@ public class Pump extends Active
      * @return Hibakod
      */
     @Override
-    public int ConnectPipe(Pipe pipe)
+    public int connectPipe(Pipe pipe)
     {
         if (connectedPipes.size() < maxConnectedPipes - 1)
         {
-            return super.ConnectPipe(pipe);
+            return super.connectPipe(pipe);
         }
         else
         {
@@ -270,9 +268,9 @@ public class Pump extends Active
      * @return Hibakod
      */
     @Override
-    public int DisconnectPipe(Pipe pipe)
+    public int disconnectPipe(Pipe pipe)
     {
-        int error = super.DisconnectPipe(pipe);
+        int error = super.disconnectPipe(pipe);
         if (error == 0)
         {
             if (pipe == input)

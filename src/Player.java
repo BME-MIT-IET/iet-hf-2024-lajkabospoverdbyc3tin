@@ -1,5 +1,3 @@
-package src;
-
 import java.io.PrintStream;
 import java.util.ArrayList;
 
@@ -32,7 +30,7 @@ public abstract class Player
     {
         this.id = ID;
         this.position = position;
-        position.InitAddPlayer(this);
+        position.initAddPlayer(this);
         if (debugEnabled)
         {
             debugOutput.println("Player - " + this + ": Sikeres inicializalas");
@@ -55,7 +53,7 @@ public abstract class Player
      *
      * @return A jatekos azonositoja
      */
-    public String GetID()
+    public String getID()
     {
         return id;
     }
@@ -66,7 +64,7 @@ public abstract class Player
      * @param ID A keresett azonosito
      * @return A meghatarozott azonositoju pumpa
      */
-    public Pump GetPumpFromInventoryByID(String ID)
+    public Pump getPumpFromInventoryByID(String ID)
     {
         return null;
     }
@@ -77,7 +75,7 @@ public abstract class Player
      * @param ID A keresett azonosito
      * @return A meghatarozott azonositoju cso
      */
-    public Pipe GetPipeFromInventoryByID(String ID)
+    public Pipe getPipeFromInventoryByID(String ID)
     {
         return null;
     }
@@ -87,7 +85,7 @@ public abstract class Player
      *
      * @return Hibakod
      */
-    public int ListInventory()
+    public int listInventory()
     {
         return -2;
     }
@@ -105,9 +103,9 @@ public abstract class Player
      *
      * @return Hibakod
      */
-    public int ListNeighbours()
+    public int listNeighbours()
     {
-        position.ListNeighbours();
+        position.listNeighbours();
         return -2;
     }
 
@@ -118,9 +116,9 @@ public abstract class Player
      * @param newPosition a celmezo ahova lepni szeretne
      * @return Hibakod
      */
-    public int Move(Field newPosition)
+    public int move(Field newPosition)
     {
-        Field actualNewPosition = newPosition.MovePlayer(this);
+        Field actualNewPosition = newPosition.movePlayer(this);
         if (actualNewPosition != null)
         {
             position = actualNewPosition;
@@ -149,7 +147,7 @@ public abstract class Player
      * @param output kimenet
      * @return Hibakod
      */
-    public int SetPumpDirection(Pipe input, Pipe output)
+    public int setPumpDirection(Pipe input, Pipe output)
     {
         return -1;
     }
@@ -159,7 +157,7 @@ public abstract class Player
      *
      * @return Hibakod
      */
-    public int Repair()
+    public int repair()
     {
         return -1;
     }
@@ -169,7 +167,7 @@ public abstract class Player
      *
      * @return Hibakod
      */
-    public int Damage()
+    public int damage()
     {
         return -1;
     }
@@ -180,7 +178,7 @@ public abstract class Player
      * @param pump pumpa
      * @return Hibakod
      */
-    public int PlacePump(Pump pump)
+    public int placePump(Pump pump)
     {
         return -1;
     }
@@ -190,7 +188,7 @@ public abstract class Player
      *
      * @return Hibakod
      */
-    public int PickUpPump()
+    public int pickUpPump()
     {
         return -1;
     }
@@ -200,7 +198,7 @@ public abstract class Player
      *
      * @return Hibakod
      */
-    public int MakeSlippy()
+    public int makeSlippy()
     {
         return -2;
     }
@@ -210,7 +208,7 @@ public abstract class Player
      *
      * @return Hibakod
      */
-    public int MakeSticky()
+    public int makeSticky()
     {
         return -2;
     }
@@ -221,7 +219,7 @@ public abstract class Player
      * @param pipe
      * @return Hibakod
      */
-    public int ConnectPipe(Pipe pipe)
+    public int connectPipe(Pipe pipe)
     {
         return -1;
     }
@@ -232,7 +230,7 @@ public abstract class Player
      * @param pipe
      * @return Hibakod
      */
-    public int DisconnectPipe(Pipe pipe)
+    public int disconnectPipe(Pipe pipe)
     {
         return -1;
     }
@@ -242,7 +240,7 @@ public abstract class Player
      *
      * @return Hibakod
      */
-    public int PickUpPipe()
+    public int pickUpPipe()
     {
         return -1;
     }

@@ -1,5 +1,3 @@
-package src;
-
 /**
  * Az osztály a nomádok csapatának példányait reprezentálja. A nomádok ki tudják
  * lyukasztani a csöveket és át tudják állítani a pumpákat.
@@ -22,9 +20,9 @@ public class Saboteur extends Player
      * @return Hibakod
      */
     @Override
-    public int SetPumpDirection(Pipe input, Pipe output)
+    public int setPumpDirection(Pipe input, Pipe output)
     {
-        if (position.SetPumpDirection(input, output) == 0)
+        if (position.setPumpDirection(input, output) == 0)
         {
             if (debugEnabled)
             {
@@ -50,9 +48,9 @@ public class Saboteur extends Player
      * @return Hibakod
      */
     @Override
-    public int Damage()
+    public int damage()
     {
-        if (position.Damage() == 0)
+        if (position.damage() == 0)
         {
             if (debugEnabled)
             {
@@ -78,9 +76,9 @@ public class Saboteur extends Player
      * @return Hibakod
      */
     @Override
-    public int MakeSlippy()
+    public int makeSlippy()
     {
-        if (position.MakeSlippy() == 0)
+        if (position.makeSlippy() == 0)
         {
             if (debugEnabled)
             {
@@ -106,9 +104,9 @@ public class Saboteur extends Player
      * @return Hibakod
      */
     @Override
-    public int MakeSticky()
+    public int makeSticky()
     {
-        if (position.MakeSticky() == 0)
+        if (position.makeSticky() == 0)
         {
             if (debugEnabled)
             {

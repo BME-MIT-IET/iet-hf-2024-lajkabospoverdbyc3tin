@@ -1,5 +1,3 @@
-package src;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -20,13 +18,13 @@ public class StartView extends View
 
 	public StartView(GameModel model){
 		this.model = model;
-		RenderStart();
+		renderStart();
 
 		
 	}
 
 	
-	public void RenderStart()
+	public void renderStart()
 	{
 		
         setPreferredSize(new Dimension(400, 300));

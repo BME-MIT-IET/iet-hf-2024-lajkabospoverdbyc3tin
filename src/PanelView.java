@@ -1,4 +1,3 @@
-package src;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -37,8 +36,8 @@ public class PanelView extends View
 		setPreferredSize(new Dimension(300, 600));
         setBackground(Color.BLACK);
 		setLayout(new GridLayout(3, 1));
-		RenderPanel();
-		UpdatePlayer(model.game.players);
+		renderPanel();
+		updatePlayer(model.game.players);
 		setBorder(BorderFactory.createLineBorder(Color.WHITE, 5));
         setVisible(true);
 
@@ -62,7 +61,7 @@ public class PanelView extends View
 
 	}
 
-	public void DisplayPlayers()
+	public void displayPlayers()
 	{	playerinventory = new JPanel(new GridLayout(2, 1));
 		playerPanel = new JPanel(new GridLayout(numberOfPlayers, 2));
 		playerPanel.setBackground(Color.BLACK);
@@ -128,7 +127,7 @@ public class PanelView extends View
 		command.setText(command.getText() + text + " ");
 	}
 	
-	public void DisplayActions()
+	public void displayActions()
 	{
 		commandsPanel = new JPanel(new GridLayout(commands.size()/2 +1, 2));
 		commandsPanel.setBackground(Color.BLACK);
@@ -161,10 +160,10 @@ public class PanelView extends View
 		add(commandsPanel);		
 	}
 	
-	public void RenderPanel()
+	public void renderPanel()
 	{
-		DisplayPlayers();
-		DisplayActions();
+		displayPlayers();
+		displayActions();
 		JPanel otherPanel = new JPanel(new GridLayout(3, 1)); 
 		otherPanel.setBackground(Color.BLACK);
 
@@ -188,15 +187,15 @@ public class PanelView extends View
 		add(otherPanel);
 	}
 	
-	public void UpdatePlayer(ArrayList<Player> players) {
+	public void updatePlayer(ArrayList<Player> players) {
 		// Build the HTML formatted text
 		StringBuilder htmlText = new StringBuilder("<html><table>");
 		ArrayList<String> headers = new ArrayList<>();
 		ArrayList<ArrayList<String>> data = new ArrayList<>();
 	
 		for (Player p : players) {
-			if (p.GetID().startsWith("Mechanic")) {
-				headers.add(p.GetID());
+			if (p.getID().startsWith("Mechanic")) {
+				headers.add(p.getID());
 					data.add(p.getInventory());
 
 			}

@@ -1,5 +1,3 @@
-package src;
-
 import java.util.ArrayList;
 
 /**
@@ -57,7 +55,7 @@ public abstract class Active extends Field
      * @return PLACEHOLDER
      */
     @Override
-    public boolean IsNeighbour(Field field)
+    public boolean isNeighbour(Field field)
     {
         return connectedPipes.contains(field);
     }
@@ -66,7 +64,7 @@ public abstract class Active extends Field
      * Kiirja a szomszedokat
      */
     @Override
-    public void ListNeighbours()
+    public void listNeighbours()
     {
         for (Pipe pipe : connectedPipes)
         {
@@ -81,9 +79,9 @@ public abstract class Active extends Field
      * @return Hibakod
      */
     @Override
-    public int ConnectPipe(Pipe pipe)
+    public int connectPipe(Pipe pipe)
     {
-        int error = pipe.ConnectActive(this);
+        int error = pipe.connectActive(this);
         if (error == 0)
         {
             connectedPipes.add(pipe);
@@ -109,11 +107,11 @@ public abstract class Active extends Field
      * @return Hibakod
      */
     @Override
-    public int DisconnectPipe(Pipe pipe)
+    public int disconnectPipe(Pipe pipe)
     {
-        if (IsNeighbour(pipe))
+        if (isNeighbour(pipe))
         {
-            int error = pipe.DisconnectActive(this);
+            int error = pipe.disconnectActive(this);
             if (error == 0)
             {
                 connectedPipes.remove(pipe);
