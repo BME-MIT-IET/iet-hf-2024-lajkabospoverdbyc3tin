@@ -1,14 +1,13 @@
-package tests;
+package HwProject.tests;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tests.HelperClasses.TestCleanup;
+import HwProject.tests.HelperClasses.TestCleanup;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import src.*;
-import tests.HelperClasses.*;
+import HwProject.tests.HelperClasses.*;
 
 class PipeTest {
 

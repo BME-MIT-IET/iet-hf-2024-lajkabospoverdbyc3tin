@@ -1,4 +1,4 @@
-package tests.HelperClasses;
+package HwProject.tests.HelperClasses;
 import src.*;
 public class TestSaboteur extends Saboteur {
 

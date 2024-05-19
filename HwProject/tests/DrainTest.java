@@ -1,11 +1,9 @@
 package tests;
 
+import HwProject.tests.HelperClasses.TestCleanup;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import src.*;
-import tests.HelperClasses.*;
 
 public class DrainTest {
 
