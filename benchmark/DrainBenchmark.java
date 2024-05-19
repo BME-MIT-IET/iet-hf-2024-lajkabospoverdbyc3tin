@@ -1,9 +1,8 @@
-package Benchmarks;
+package benchmark;
 
+import benchmark.HelperClasses.TestPipe;
 import org.openjdk.jmh.annotations.*;
-import src.*;
-import tests.*;
-import java.io.OutputStream;
+import Game.*;
 import java.io.PrintStream;
 
 
@@ -18,33 +17,31 @@ public class DrainBenchmark {
         TestPipe pipe;
         Drain drain;
 
-        /** Writes to nowhere. */
-        public static class EmptyOutputStream extends OutputStream {
-            @Override
-            public void write(int b) {}
-        }
 
         @Setup(Level.Trial)
         public void doBeforeEachBenchmark() {
             game = new Game(new PrintStream(new EmptyOutputStream()));
-            Drain.SetGame(game);
+            Drain.setGame(game);
 
             source = new Source();
             pipe = new TestPipe();
             drain = new Drain();
 
-            source.ConnectPipe(pipe);
-            drain.ConnectPipe(pipe);
+            source.connectPipe(pipe);
+            drain.connectPipe(pipe);
         }
 
     }
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
-    public void pullWater(GameBenchmarkState gbs) {
+    public void simpleDrain(GameBenchmarkState gbs) {
 
-        gbs.source.Step();
-        gbs.pipe.Step();
-        gbs.drain.Step();
+        gbs.source.step();
+        gbs.pipe.step();
+        gbs.drain.step();
     }
 }
+
+
+
