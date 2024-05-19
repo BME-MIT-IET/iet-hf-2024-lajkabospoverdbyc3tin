@@ -1,3 +1,6 @@
+package HwProject.src;
+
+
 import java.util.ArrayList;
 
 /**
@@ -52,6 +55,8 @@ public class Pipe extends Field
     protected int protectedRounds;
 
     protected int tickCounter = 0;
+
+    private static final String LOG_PIPE = "Pipe - ";
 
     /**
      * beállítja a game változó értékét a megadott Game objektumra
@@ -190,6 +195,7 @@ public class Pipe extends Field
      * @param player játékos
      * @return Hibakod
      */
+    @Override
     protected int removePlayer(Player player)
     {
         if (players.remove(player))
@@ -220,6 +226,7 @@ public class Pipe extends Field
      * @param player játékos
      * @return PLACEHOLDER
      */
+    @Override
     public Field movePlayer(Player player)
     {
         if (isNeighbour(player.position))
@@ -535,7 +542,7 @@ public class Pipe extends Field
         game.fields.add(pump);
         Pipe newPipe = new Pipe();
         game.fields.add(newPipe);
-        ends.get(0).ReplacePipe(this, newPipe);
+        ends.get(0).replacePipe(this, newPipe);
         newPipe.connectActive(ends.get(0));
         ends.remove(0);
         pump.connectPipe(this);
