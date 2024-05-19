@@ -1,6 +1,10 @@
+package tests;
 
 import org.junit.jupiter.api.*;
+import src.*;
+import tests.HelperClasses.*;
 import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PumpTest {
