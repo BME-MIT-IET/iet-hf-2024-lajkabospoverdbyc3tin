@@ -8,6 +8,8 @@
 plugins {
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
+
+    id("me.champeau.jmh") version "0.7.2"
 }
 
 repositories {
@@ -24,6 +26,7 @@ dependencies {
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     implementation(libs.guava)
+    implementation("org.assertj:assertj-swing:3.17.1")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
