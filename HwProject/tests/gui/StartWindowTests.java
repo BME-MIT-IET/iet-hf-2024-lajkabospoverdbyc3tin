@@ -23,12 +23,6 @@ public class StartWindowTests {
     private FrameFixture window;
 
 
-    @BeforeClass
-    public static void setUpOnce() {
-        //FailOnThreadViolationRepaintManager.install();
-
-    }
-
     @Before
     public void setUp() {
         var gameController = new GameController(new GameModel());
