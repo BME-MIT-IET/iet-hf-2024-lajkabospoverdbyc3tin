@@ -36,9 +36,11 @@ public class TestPipe extends Pipe {
         return players;
     }
 
+    public void setDamaged(boolean isDamaged) {
+        this.isDamaged = isDamaged;
+    }
 
-
-    public boolean getDamage() {
+    public boolean getDamaged() {
         return isDamaged;
     }
 }

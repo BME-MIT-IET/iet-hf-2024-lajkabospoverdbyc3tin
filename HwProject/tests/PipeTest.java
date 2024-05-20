@@ -157,14 +157,14 @@ class PipeTest {
     @Test
     void damage() {
         testPipe.damage();
-        assertTrue(testPipe.getDamage());
+        assertTrue(testPipe.getDamaged());
     }
 
     @Test
     void repair() {
         testPipe.damage();
         testPipe.repair();
-        assertFalse(testPipe.getDamage());
+        assertFalse(testPipe.getDamaged());
     }
 
     @Test
