@@ -51,7 +51,7 @@ class SaboteurTest {
         TestPipe pipe = new TestPipe();
         saboteur = new TestSaboteur("Saboteur2", pipe);
         saboteur.damage();
-        assertTrue(pipe.getDamage());
+        assertTrue(pipe.getDamaged());
     }
 
     @Test
@@ -64,22 +64,10 @@ class SaboteurTest {
 
     @Test
     void makeSticky() {
-    }
-
-    @Test
-    void testSetPumpDirection() {
-    }
-
-    @Test
-    void testDamage() {
-    }
-
-    @Test
-    void testMakeSlippy() {
-    }
-
-    @Test
-    void testMakeSticky() {
+        TestPipe pipe = new TestPipe();
+        saboteur = new TestSaboteur("Saboteur2", pipe);
+        saboteur.makeSticky();
+        assertEquals(StickyStates.StickyAndOccupied, pipe.getSticky());
     }
 
     @AfterEach
