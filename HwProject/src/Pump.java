@@ -1,5 +1,3 @@
-package HwProject.src;
-
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -250,7 +248,7 @@ public class Pump extends Active
     @Override
     public int connectPipe(Pipe pipe)
     {
-        if (connectedPipes.size() < maxConnectedPipes - 1)
+        if (connectedPipes.size() < maxConnectedPipes)
         {
             return super.connectPipe(pipe);
         }

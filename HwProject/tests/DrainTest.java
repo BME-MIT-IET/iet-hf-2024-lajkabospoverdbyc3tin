@@ -1,11 +1,15 @@
-package tests;
+<<<<<<< HEAD
 
+=======
+package HwProject.tests;
+
+import HwProject.tests.HelperClasses.*;
+import HwProject.src.*;
+>>>>>>> f51f5a7c89a1b3c42d18067473fec54576eb446f
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import src.*;
-import tests.HelperClasses.*;
 
 public class DrainTest {
 
@@ -14,15 +18,8 @@ public class DrainTest {
     @BeforeEach
     public void setUp() {
         game = new Game(System.out);
-        Drain.SetGame(game);
+        Drain.setGame(game);
 
-    }
-
-    @Test
-    public void testGetInstanceNr() {
-        int initialInstanceNr = Drain.GetInstanceNr();
-        Drain drain1 = new Drain();
-        assertEquals(initialInstanceNr + 1, Drain.GetInstanceNr());
     }
 
     @Test
@@ -31,14 +28,14 @@ public class DrainTest {
         TestPipe pipe = new TestPipe();
         Drain drain = new Drain();
 
-        source.ConnectPipe(pipe);
-        drain.ConnectPipe(pipe);
+        source.connectPipe(pipe);
+        drain.connectPipe(pipe);
 
-        source.Step();
-        pipe.Step();
-        drain.Step();
+        source.step();
+        pipe.step();
+        drain.step();
 
-        assertNotEquals(0, game.GetMechanicPoint());
+        assertNotEquals(0, game.getMechanicPoint());
     }
 
     @Test
@@ -46,7 +43,7 @@ public class DrainTest {
         // Create a Drain instance
         Drain drain = new Drain();
         // Pick up a pump
-        Pump pump = drain.PickUpPump();
+        Pump pump = drain.pickUpPump();
         // Verify that a pump is picked up
         assertNotNull(pump);
     }
@@ -56,15 +53,13 @@ public class DrainTest {
         // Create a Drain instance
         Drain drain = new Drain();
         // Pick up a pipe
-        Pipe pipe = drain.PickUpPipe();
+        Pipe pipe = drain.pickUpPipe();
         // Verify that a pipe is picked up
         assertNotNull(pipe);
     }
 
     @AfterEach
     public void cleanUp() {
-        TestPump.setInstanceNr(0);
-        TestPipe.setInstanceNr(0);
-        TestSource.setInstanceNr(0);
+        TestCleanup.cleanup();
     }
 }

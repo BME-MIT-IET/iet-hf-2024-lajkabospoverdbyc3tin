@@ -1,5 +1,3 @@
-package HwProject.src;
-
 
 /**
  * Az osztály a nomádok csapatának példányait reprezentálja. A nomádok ki tudják

@@ -1,5 +1,3 @@
-package HwProject.src;
-
 
 public class Graphic 
 {

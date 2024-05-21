@@ -1,5 +1,3 @@
-package HwProject.src;
-
 /**
  * A hegyekben található források. Innen származik a végtelen mennyiségű víz,
  * melyet a csapatok a játék során gyűjtenek.
