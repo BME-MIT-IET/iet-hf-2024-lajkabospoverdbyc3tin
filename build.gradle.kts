@@ -13,7 +13,6 @@ plugins {
 
 application {
     mainClass.set("src.Graphic")
-
 }
 
 repositories {
@@ -22,39 +21,22 @@ repositories {
 }
 
 sourceSets  {
-    main {
-        java {
-            srcDir("HwProject/src/")
-        }
-    }
-    test {
-        java {
-            srcDirs("HwProject/tests", "HwProject/tests/HelperClasses")
-        }
+    create("Sources") {
+        java.srcDir("src")
     }
 }
 
 dependencies {
-
+    // Use JUnit test framework.
+    testImplementation(libs.junit)
 
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api(libs.commons.math3)
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    sourceSets.named("main") {
+    sourceSets.named("Sources") {
         implementation(libs.guava)
     }
-
-
-    // Use JUnit Jupiter API for testing.
-    implementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
-
-}
-
-tasks.test {
-    useJUnitPlatform()
 }
 
 tasks.jar {
@@ -67,10 +49,6 @@ tasks.jar {
         }
 }
 
-
-tasks.named<Test>("test") {
-    useJUnitPlatform()
-}
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
