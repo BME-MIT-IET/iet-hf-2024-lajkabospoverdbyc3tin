@@ -1,6 +1,5 @@
-package tests.HelperClasses;
 
-import src.Pipe;
+
 
 /**
  *    Pipe subclass for testing, only added setters and getters for each private and protected field
@@ -9,6 +8,7 @@ public class TestPipe extends Pipe {
     public TestPipe() {
         super();
     }
+
 
     public int getWaterLevel() {
         return waterLevel;
