@@ -1,5 +1,4 @@
 
-
 import javax.swing.JFrame;
 import java.awt.*;
 import java.util.ArrayList;
@@ -12,7 +11,8 @@ public class GameController implements iObserver
 	private PanelView panelView;
     private GameFieldView gameFieldView;
     private StartView  startView;
-    private JFrame mainFrame;
+    protected JFrame mainFrame;
+
 
 	public GameController(GameModel model)
     {   
