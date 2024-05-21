@@ -32,6 +32,7 @@ public class StartView extends View
         setLayout(new BorderLayout());
         setBackground(Color.BLACK);
 
+
         // Create the label and text field
         players = new JLabel("Players:");
         players.setForeground(Color.WHITE);
@@ -39,6 +40,8 @@ public class StartView extends View
 		water = new JLabel("Water amount:");
 		water.setForeground(Color.WHITE);
 		tfWater = new JTextField("", 10);
+
+
 
         // Create the start button
     	startButton = new JButton("Start");
@@ -64,6 +67,11 @@ public class StartView extends View
         containerPanel.setBackground(Color.BLACK);
         containerPanel.add(playerPanel);
         containerPanel.add(waterPanel);
+
+		//Setting names, required for UI tests
+		containerPanel.setName("StartPanel");
+		tfPlayers.setName("PlayerInput");
+		tfWater.setName("WaterInput");
 
 		  // Add ActionListener to the startButton
 		  startButton.addActionListener(new ActionListener() {
