@@ -1,6 +1,6 @@
-package HwProject.tests.HelperClasses;
+package tests.HelperClasses;
 
-import HwProject.src.Pipe;
+import src.Pipe;
 
 /**
  *    Pipe subclass for testing, only added setters and getters for each private and protected field
