@@ -22,9 +22,6 @@ repositories {
 }
 
 sourceSets  {
-    create("Sources") {
-        java.srcDir("HwProject/src/")
-    }
 
     main {
         java {
@@ -41,15 +38,13 @@ sourceSets  {
 
 dependencies {
 
-
     // This dependency is exported to consumers, that is to say found on their compile classpath.
     api(libs.commons.math3)
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    sourceSets.named("Sources") {
+    sourceSets.named("main") {
         implementation(libs.guava)
     }
-
 
     // Use JUnit Jupiter API for testing.
     implementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
