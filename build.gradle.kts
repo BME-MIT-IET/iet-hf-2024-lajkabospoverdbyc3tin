@@ -22,11 +22,16 @@ repositories {
 }
 
 sourceSets  {
+    create("Sources") {
+        java.srcDir("HwProject/src/")
+    }
+
     main {
         java {
             srcDir("HwProject/src/")
         }
     }
+
     test {
         java {
             srcDirs("HwProject/tests", "HwProject/tests/HelperClasses")
@@ -41,7 +46,7 @@ dependencies {
     api(libs.commons.math3)
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    sourceSets.named("main") {
+    sourceSets.named("Sources") {
         implementation(libs.guava)
     }
 
