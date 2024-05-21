@@ -1,6 +1,6 @@
-package HwProject.tests.HelperClasses;
+package tests.HelperClasses;
 
-import HwProject.src.Source;
+import src.Source;
 
 public class TestSource extends Source {
     private boolean pushWaterCalled = false;
