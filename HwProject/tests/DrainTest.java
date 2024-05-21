@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 
+=======
+package HwProject.tests;
+
+import HwProject.tests.HelperClasses.*;
+import HwProject.src.*;
+>>>>>>> f51f5a7c89a1b3c42d18067473fec54576eb446f
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
 
