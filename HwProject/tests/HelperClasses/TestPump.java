@@ -1,6 +1,3 @@
-package tests.HelperClasses;
-
-import src.*;
 
 /**
  *     Pump subclass for testing, only added setters and getters for each private and protected field

@@ -1,6 +1,3 @@
-package HwProject.tests.HelperClasses;
-
-import HwProject.tests.HelperClasses.*;
 
 public class TestCleanup {
 

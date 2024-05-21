@@ -1,4 +1,3 @@
-package HwProject.src;
 
 /**
  * A városokban található ciszterna. A szerelők csapata ide gyűjti a vizet. Egy

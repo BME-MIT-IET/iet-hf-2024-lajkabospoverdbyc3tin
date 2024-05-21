@@ -1,5 +1,3 @@
-package HwProject.src;
-
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

@@ -1,7 +1,4 @@
-package HwProject.tests;
 
-import HwProject.tests.HelperClasses.*;
-import HwProject.src.*;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.Test;
 
