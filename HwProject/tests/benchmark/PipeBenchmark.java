@@ -7,9 +7,12 @@ import Game.*;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 
 public class PipeBenchmark {
+
+
 
 
     /**
@@ -19,6 +22,8 @@ public class PipeBenchmark {
     public static class AlreadyConnectedPipes {
 
 
+        @Param({"1000", "10000", "1000000"})
+        int iterationCount;
 
         Game game;
         Source source;
@@ -44,7 +49,7 @@ public class PipeBenchmark {
             pipes.add(lastPipe);
             pumps.add(pump);
 
-            for (int i = 0; i < 100000; i++) {
+            for (int i = 1; i < iterationCount; i++) {
                 pump = new TestPump(2);
                 pump.connectPipe(lastPipe);
                 pump.setInput(lastPipe);
@@ -67,17 +72,13 @@ public class PipeBenchmark {
 
         }
 
-        @TearDown
-        public void afterBenchmark() {
-            System.out.println("Utolsó pumpa waterlevel: " + pumps.get(pumps.size()-1).getWaterLevel());
-        }
 
     }
 
     @Benchmark
-    @BenchmarkMode({Mode.AverageTime, Mode.Throughput, Mode.SampleTime})
+    @BenchmarkMode({Mode.AverageTime, Mode.Throughput})
     @Warmup(iterations = 1)
-    @Measurement(iterations = 3)
+    @Measurement(iterations = 1, time = 1, timeUnit = TimeUnit.MILLISECONDS)
     @Fork(value = 1)
     public void moveWater(AlreadyConnectedPipes acp) {
 
@@ -92,6 +93,8 @@ public class PipeBenchmark {
     @State(Scope.Thread)
     public static class PipesToConnect {
 
+        @Param({"1000", "10000", "1000000"})
+        int iterationCount;
 
         Game game;
         Source source;
@@ -109,7 +112,7 @@ public class PipeBenchmark {
             source = new Source();
 
 
-            for (int i = 0; i < 100000; i++) {
+            for (int i = 0; i < iterationCount; i++) {
                 pumps.add(new TestPump(2));
                 pipes.add(new TestPipe());
             }
@@ -124,9 +127,9 @@ public class PipeBenchmark {
 
 
     @Benchmark
-    @BenchmarkMode({Mode.AverageTime, Mode.Throughput, Mode.SampleTime})
+    @BenchmarkMode({Mode.AverageTime, Mode.Throughput})
     @Warmup(iterations = 1)
-    @Measurement(iterations = 3)
+    @Measurement(iterations = 1, time = 1, timeUnit = TimeUnit.MILLISECONDS)
     @Fork(value = 1)
     public void connectPipes(PipesToConnect ptc) {
 
@@ -135,7 +138,7 @@ public class PipeBenchmark {
 
         pump.setOutput(lastPipe);
 
-        for (int i = 0; i < 100000; i++) {
+        for (int i = 1; i < ptc.iterationCount; i++) {
             pump = ptc.pumps.get(i);
             pump.connectPipe(lastPipe);
             pump.setInput(lastPipe);
@@ -146,8 +149,8 @@ public class PipeBenchmark {
 
         }
 
-        ptc.pumps.get(100000).connectPipe(lastPipe);
-        ptc.pumps.get(100000).setInput(lastPipe);
+        ptc.pumps.get(ptc.iterationCount).connectPipe(lastPipe);
+        ptc.pumps.get(ptc.iterationCount).setInput(lastPipe);
 
     }
 
