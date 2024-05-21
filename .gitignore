@@ -3,3 +3,5 @@ compiled
 out
 .idea
 *.iml
+.gradle
+build
