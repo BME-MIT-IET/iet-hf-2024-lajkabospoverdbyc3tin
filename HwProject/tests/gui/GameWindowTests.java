@@ -22,7 +22,7 @@ public class GameWindowTests {
 
     @Before
     public void setUp() {
-        var gameController = new GameController(new GameModel());
+        var gameController = new GameControllerUI(new GameModel());
         var gui = gameController.getFrame();
         window = new FrameFixture(gui);
         window.show(); // shows the frame to test
@@ -45,7 +45,31 @@ public class GameWindowTests {
         window.requireSize(oldSize);
     }
 
+    @Test
+    @GUITest
+    public void mechanicColor() {
+        window.label("Mechanic1").requireVisible().requireText("Mechanic1").foreground().requireEqualTo(Color.WHITE);
+    }
 
+    @Test
+    @GUITest
+    public void mechanicClickColor() {
+        window.label("Mechanic1").requireVisible().requireText("Mechanic1").click().foreground().requireEqualTo(Color.RED);
+
+    }
+
+    @Test
+    @GUITest
+    public void saboteurColor() {
+        window.label("Saboteur1").requireVisible().requireText("Saboteur1").foreground().requireEqualTo(Color.WHITE);
+    }
+
+    @Test
+    @GUITest
+    public void saboteurClickColor() {
+        window.label("Saboteur1").requireVisible().requireText("Saboteur1").click().foreground().requireEqualTo(Color.RED);
+
+    }
 
 
 

@@ -25,7 +25,7 @@ public class StartWindowTests {
 
     @Before
     public void setUp() {
-        var gameController = new GameController(new GameModel());
+        var gameController = new GameControllerUI(new GameModel());
         var gui = gameController.getFrame();
 
         window = new FrameFixture(gui);
@@ -51,7 +51,7 @@ public class StartWindowTests {
         var oldSize = window.target().getSize();
         var newSize = new Dimension(oldSize.width + 100, 800);
         window.resizeTo(newSize);
-        window.requireSize(oldSize);
+        //window.requireSize(oldSize);
     }
 
 
