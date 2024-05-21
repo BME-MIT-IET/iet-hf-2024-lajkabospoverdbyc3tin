@@ -22,7 +22,7 @@ repositories {
 
 sourceSets  {
     create("Sources") {
-        java.srcDir("src")
+        java.srcDir("HwProject/")
     }
 }
 
@@ -37,6 +37,14 @@ dependencies {
     sourceSets.named("Sources") {
         implementation(libs.guava)
     }
+
+    // Use org.junit.jupiter:junit-jupiter-api:5.8.1
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+    // Use org.junit.jupiter:junit-jupiter-engine:5.8.1
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+    // org.junit.jupiter:junit-jupiter:5.8.1
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+
 }
 
 tasks.jar {
