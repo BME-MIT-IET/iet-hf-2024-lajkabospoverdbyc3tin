@@ -52,6 +52,7 @@ dependencies {
 
     //AsserJ Swing for GUI tests
     implementation("org.assertj:assertj-swing:3.17.1")
+    testImplementation("org.assertj:assertj-swing:3.17.1")
 
     testImplementation("org.openjdk.jmh:jmh-core:1.35")
 }
