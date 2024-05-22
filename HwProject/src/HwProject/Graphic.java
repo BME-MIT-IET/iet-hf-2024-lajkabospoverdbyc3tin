@@ -1,5 +1,5 @@
-
-public class Graphic 
+package HwProject;
+public class Graphic
 {
     public static void main(String[] args)
     {

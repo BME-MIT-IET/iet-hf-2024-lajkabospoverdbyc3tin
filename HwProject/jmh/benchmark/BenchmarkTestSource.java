@@ -1,8 +1,8 @@
-package benchmark.HelperClasses;
+package benchmark;
 
-import Game.Source;
+import HwProject.*;
 
-public class TestSource extends Source {
+public class BenchmarkTestSource extends HwProject.Source {
     private boolean pushWaterCalled = false;
 
     @Override

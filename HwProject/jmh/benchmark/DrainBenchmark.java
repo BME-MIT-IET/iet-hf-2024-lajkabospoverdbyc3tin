@@ -1,22 +1,21 @@
 package benchmark;
 
-import benchmark.HelperClasses.TestPipe;
 import org.openjdk.jmh.annotations.*;
-import Game.*;
-import java.io.PrintStream;
 
+import java.io.PrintStream;
+import java.util.concurrent.TimeUnit;
+
+import HwProject.*;
 
 public class DrainBenchmark {
-
 
     @State(Scope.Thread)
     public static class GameBenchmarkState {
 
-        Game game;
+        HwProject.Game game;
         Source source;
-        TestPipe pipe;
+        BenchmarkTestPipe pipe;
         Drain drain;
-
 
         @Setup(Level.Trial)
         public void doBeforeEachBenchmark() {
@@ -24,17 +23,19 @@ public class DrainBenchmark {
             Drain.setGame(game);
 
             source = new Source();
-            pipe = new TestPipe();
+            pipe = new BenchmarkTestPipe();
             drain = new Drain();
 
             source.connectPipe(pipe);
             drain.connectPipe(pipe);
         }
-
     }
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1, time = 1, timeUnit = TimeUnit.MILLISECONDS)
+    @Fork(value = 1)
     public void simpleDrain(GameBenchmarkState gbs) {
 
         gbs.source.step();

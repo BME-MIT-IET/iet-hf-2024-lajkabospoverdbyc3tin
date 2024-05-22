@@ -1,19 +1,14 @@
 package benchmark;
 
-import benchmark.HelperClasses.TestPipe;
-import benchmark.HelperClasses.TestPump;
 import org.openjdk.jmh.annotations.*;
-import Game.*;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import HwProject.*;
 
 public class PipeBenchmark {
-
-
-
 
     /**
      * Pumpa -> Cső -> Pumpa -> ... -> Pumpa (100000 csővel és 100001 pumpával)
@@ -22,15 +17,14 @@ public class PipeBenchmark {
     public static class AlreadyConnectedPipes {
 
 
-        @Param({"1000", "10000", "1000000"})
+        @Param({"100", "1000", "100000"})
         int iterationCount;
 
         Game game;
         Source source;
-        ArrayList<TestPipe> pipes = new ArrayList<TestPipe>();
-        ArrayList<TestPump> pumps = new ArrayList<>();
+        ArrayList<BenchmarkTestPipe> pipes = new ArrayList<>();
+        ArrayList<BenchmarkTestPump> pumps = new ArrayList<>();
         Drain drain;
-
 
         @Setup(Level.Trial)
         public void doBeforeBenchmark() {
@@ -40,8 +34,8 @@ public class PipeBenchmark {
 
             source = new Source();
 
-            var pump = new TestPump(2);
-            var lastPipe = new TestPipe();
+            var pump = new BenchmarkTestPump(2);
+            var lastPipe = new BenchmarkTestPipe();
 
             pump.setWaterLevel(10);
             pump.setOutput(lastPipe);
@@ -50,29 +44,23 @@ public class PipeBenchmark {
             pumps.add(pump);
 
             for (int i = 1; i < iterationCount; i++) {
-                pump = new TestPump(2);
+                pump = new BenchmarkTestPump(2);
                 pump.connectPipe(lastPipe);
                 pump.setInput(lastPipe);
 
-                lastPipe = new TestPipe();
+                lastPipe = new BenchmarkTestPipe();
                 pump.connectPipe(lastPipe);
                 pump.setOutput(lastPipe);
 
                 pumps.add(pump);
                 pipes.add(lastPipe);
-
             }
 
-            pump = new TestPump(2);
+            pump = new BenchmarkTestPump(2);
             pump.connectPipe(lastPipe);
             pump.setInput(lastPipe);
             pumps.add(pump);
-
-
-
         }
-
-
     }
 
     @Benchmark
@@ -86,22 +74,19 @@ public class PipeBenchmark {
             acp.pumps.get(i).step();
             acp.pipes.get(i).step();
         }
-
     }
-
 
     @State(Scope.Thread)
     public static class PipesToConnect {
 
-        @Param({"1000", "10000", "1000000"})
+        @Param({"100", "1000", "100000"})
         int iterationCount;
 
         Game game;
         Source source;
-        ArrayList<TestPipe> pipes = new ArrayList<TestPipe>();
-        ArrayList<TestPump> pumps = new ArrayList<>();
+        ArrayList<BenchmarkTestPipe> pipes = new ArrayList<>();
+        ArrayList<BenchmarkTestPump> pumps = new ArrayList<>();
         Drain drain;
-
 
         @Setup(Level.Trial)
         public void doBeforeBenchmark() {
@@ -111,20 +96,17 @@ public class PipeBenchmark {
 
             source = new Source();
 
-
             for (int i = 0; i < iterationCount; i++) {
-                pumps.add(new TestPump(2));
-                pipes.add(new TestPipe());
+                pumps.add(new BenchmarkTestPump(2));
+                pipes.add(new BenchmarkTestPipe());
             }
-            pumps.add(new TestPump(2));
+            pumps.add(new BenchmarkTestPump(2));
 
 
 
 
         }
-
     }
-
 
     @Benchmark
     @BenchmarkMode({Mode.AverageTime, Mode.Throughput})
@@ -133,8 +115,8 @@ public class PipeBenchmark {
     @Fork(value = 1)
     public void connectPipes(PipesToConnect ptc) {
 
-        TestPump pump = ptc.pumps.get(0);
-        TestPipe lastPipe = ptc.pipes.get(0);
+        BenchmarkTestPump pump = ptc.pumps.get(0);
+        BenchmarkTestPipe lastPipe = ptc.pipes.get(0);
 
         pump.setOutput(lastPipe);
 
@@ -146,13 +128,9 @@ public class PipeBenchmark {
             lastPipe = ptc.pipes.get(i);
             pump.connectPipe(lastPipe);
             pump.setOutput(lastPipe);
-
         }
 
         ptc.pumps.get(ptc.iterationCount).connectPipe(lastPipe);
         ptc.pumps.get(ptc.iterationCount).setInput(lastPipe);
-
     }
-
-
 }

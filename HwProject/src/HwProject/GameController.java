@@ -1,4 +1,4 @@
-
+package HwProject;
 import javax.swing.JFrame;
 import java.awt.*;
 import java.util.ArrayList;

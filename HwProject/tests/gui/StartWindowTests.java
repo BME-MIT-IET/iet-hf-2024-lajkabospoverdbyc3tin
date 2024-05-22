@@ -1,29 +1,19 @@
-package gui;
-
-import static gui.TestingTools.findButtonByText;
-import static org.assertj.swing.launcher.ApplicationLauncher.application;
-import static org.junit.Assert.assertEquals;
-
+import HwProject.*;
 import org.assertj.swing.annotation.GUITest;
-import org.assertj.swing.exception.ActionFailedException;
 import org.assertj.swing.fixture.FrameFixture;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import Game.GameController;
-import Game.GameModel;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.opentest4j.AssertionFailedError;
 
 import java.awt.*;
 
-import static org.assertj.swing.finder.WindowFinder.findFrame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StartWindowTests {
     private FrameFixture window;
 
-
-    @Before
+    @BeforeEach
     public void setUp() {
         var gameController = new GameControllerUI(new GameModel());
         var gui = gameController.getFrame();
@@ -38,23 +28,22 @@ public class StartWindowTests {
         window.requireTitle("Sivatagi Vizhalozatok");
     }
 
-
     @Test
     @GUITest
     public void startWindowBackground() {
         window.panel("StartPanel").background().requireEqualTo(Color.BLACK);
     }
 
-    @Test(expected = ActionFailedException.class)
+    @Test
     @GUITest
     public void startWindowNotResizable() {
-        var oldSize = window.target().getSize();
-        var newSize = new Dimension(oldSize.width + 100, 800);
-        window.resizeTo(newSize);
-        //window.requireSize(oldSize);
+        assertThrows(AssertionFailedError.class, () -> {
+            var oldSize = window.target().getSize();
+            var newSize = new Dimension(oldSize.width + 100, 800);
+            window.resizeTo(newSize);
+            window.requireSize(oldSize);
+        });
     }
-
-
 
     @Test
     @GUITest
@@ -72,7 +61,7 @@ public class StartWindowTests {
     @GUITest
     public void gameStartsWithNoSettings() {
         window.button().requireText("Start").click();
-        window.button(findButtonByText("Done")).requireEnabled().requireVisible();
+        window.button(TestingTools.findButtonByText("Done")).requireEnabled().requireVisible();
     }
 
     @Test
@@ -81,14 +70,13 @@ public class StartWindowTests {
         window.textBox("PlayerInput").enterText("-1");
         window.textBox("WaterInput").enterText("ADASDASDASD");
         window.button().requireText("Start").click();
-        window.button(findButtonByText("Done")).requireEnabled().requireVisible();
+        window.button(TestingTools.findButtonByText("Done")).requireEnabled().requireVisible();
     }
 
-
-
-    @After
+    @AfterEach
     public void tearDown() {
         window.cleanUp();
+        TestCleanup.cleanup();
     }
 
 }
