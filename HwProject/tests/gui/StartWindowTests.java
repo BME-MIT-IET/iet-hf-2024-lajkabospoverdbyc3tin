@@ -1,8 +1,3 @@
-package gui;
-
-import static gui.TestingTools.findButtonByText;
-
-
 import HwProject.*;
 import org.assertj.swing.annotation.GUITest;
 import org.assertj.swing.exception.ActionFailedException;
@@ -10,6 +5,7 @@ import org.assertj.swing.fixture.FrameFixture;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.opentest4j.AssertionFailedError;
 
 import java.awt.*;
 
@@ -43,11 +39,11 @@ public class StartWindowTests {
     @Test
     @GUITest
     public void startWindowNotResizable() {
-        assertThrows(ActionFailedException.class, () -> {
+        assertThrows(AssertionFailedError.class, () -> {
             var oldSize = window.target().getSize();
             var newSize = new Dimension(oldSize.width + 100, 800);
             window.resizeTo(newSize);
-            //window.requireSize(oldSize);
+            window.requireSize(oldSize);
         });
     }
 
@@ -67,7 +63,7 @@ public class StartWindowTests {
     @GUITest
     public void gameStartsWithNoSettings() {
         window.button().requireText("Start").click();
-        window.button(findButtonByText("Done")).requireEnabled().requireVisible();
+        window.button(TestingTools.findButtonByText("Done")).requireEnabled().requireVisible();
     }
 
     @Test
@@ -76,12 +72,13 @@ public class StartWindowTests {
         window.textBox("PlayerInput").enterText("-1");
         window.textBox("WaterInput").enterText("ADASDASDASD");
         window.button().requireText("Start").click();
-        window.button(findButtonByText("Done")).requireEnabled().requireVisible();
+        window.button(TestingTools.findButtonByText("Done")).requireEnabled().requireVisible();
     }
 
     @AfterEach
     public void tearDown() {
         window.cleanUp();
+        TestCleanup.cleanup();
     }
 
 }
