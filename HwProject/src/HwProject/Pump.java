@@ -1,4 +1,4 @@
-
+package HwProject;
 import java.util.ArrayList;
 import java.util.Random;
 

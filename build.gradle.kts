@@ -34,6 +34,14 @@ sourceSets  {
             srcDirs("HwProject/tests", "HwProject/tests/HelperClasses")
         }
     }
+
+    //Creating JMH sourceSet for benchmark classes
+    create("jmh") {
+        java.srcDirs("HwProject/jmh", "HwProject/src")
+        compileClasspath += sourceSets.main.get().output + sourceSets.main.get().compileClasspath + sourceSets.main.get().runtimeClasspath
+        runtimeClasspath += sourceSets.main.get().output + sourceSets.main.get().compileClasspath + sourceSets.main.get().runtimeClasspath
+
+    }
 }
 
 dependencies {
@@ -50,6 +58,13 @@ dependencies {
     implementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+
+    //Using JMH for benchmarks
+    "jmhImplementation"("org.openjdk.jmh:jmh-core:1.37")
+    "jmhAnnotationProcessor"("org.openjdk.jmh:jmh-generator-annprocess:1.37")
+
+    //AsserJ Swing for GUI tests
+    implementation("org.assertj:assertj-swing:3.17.1")
 
 }
 
@@ -77,4 +92,15 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+}
+
+//Tasks for proper benchmarks
+tasks.register<JavaExec>("jmh") {
+    dependsOn("jmhClasses")
+    mainClass.set("org.openjdk.jmh.Main")
+    classpath = sourceSets.named("jmh").get().compileClasspath + sourceSets.named("jmh").get().runtimeClasspath
+}
+
+tasks.named("classes") {
+    finalizedBy("jmhClasses")
 }

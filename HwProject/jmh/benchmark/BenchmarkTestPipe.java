@@ -1,12 +1,12 @@
-package benchmark.HelperClasses;
+package benchmark;
 
-import Game.Pipe;
+import HwProject.*;
 
 /**
  *    Pipe subclass for testing, only added setters and getters for each private and protected field
  */
-public class TestPipe extends Pipe {
-    public TestPipe() {
+public class BenchmarkTestPipe extends Pipe {
+    public BenchmarkTestPipe() {
         super();
     }
 

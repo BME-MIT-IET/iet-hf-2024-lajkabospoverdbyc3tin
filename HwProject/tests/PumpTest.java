@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import HwProject.*;
+
 class PumpTest {
     private TestPump pump;
     private TestPipe inputPipe;
