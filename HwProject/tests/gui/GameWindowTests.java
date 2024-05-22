@@ -1,26 +1,24 @@
 package gui;
 
-import Game.GameController;
-import Game.GameModel;
+
 import org.assertj.swing.annotation.GUITest;
-import org.assertj.swing.core.GenericTypeMatcher;
 import org.assertj.swing.exception.ActionFailedException;
 import org.assertj.swing.fixture.FrameFixture;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
-import javax.swing.*;
 import java.awt.*;
 
 import static gui.TestingTools.findButtonByText;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import HwProject.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class GameWindowTests {
     private FrameFixture window;
 
 
-    @Before
+    @BeforeEach
     public void setUp() {
         var gameController = new GameControllerUI(new GameModel());
         var gui = gameController.getFrame();
@@ -36,13 +34,16 @@ public class GameWindowTests {
     }
 
 
-    @Test(expected = ActionFailedException.class)
+    @Test()
     @GUITest
     public void GameWindowNotResizable() {
-        var oldSize = window.target().getSize();
-        var newSize = new Dimension(oldSize.width + 100, 800);
-        window.resizeTo(newSize);
-        window.requireSize(oldSize);
+        assertThrows(ActionFailedException.class, () ->{
+            var oldSize = window.target().getSize();
+            var newSize = new Dimension(oldSize.width + 100, 800);
+            window.resizeTo(newSize);
+            window.requireSize(oldSize);
+        });
+
     }
 
     @Test
@@ -74,7 +75,7 @@ public class GameWindowTests {
 
 
 
-    @After
+    @AfterEach
     public void tearDown() {
         window.cleanUp();
     }
