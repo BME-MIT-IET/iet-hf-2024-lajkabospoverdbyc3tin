@@ -22,7 +22,7 @@ public class PipeBenchmark {
 
         Game game;
         Source source;
-        ArrayList<BenchmarkTestPipe> pipes = new ArrayList<BenchmarkTestPipe>();
+        ArrayList<BenchmarkTestPipe> pipes = new ArrayList<>();
         ArrayList<BenchmarkTestPump> pumps = new ArrayList<>();
         Drain drain;
 
@@ -84,7 +84,7 @@ public class PipeBenchmark {
 
         Game game;
         Source source;
-        ArrayList<BenchmarkTestPipe> pipes = new ArrayList<BenchmarkTestPipe>();
+        ArrayList<BenchmarkTestPipe> pipes = new ArrayList<>();
         ArrayList<BenchmarkTestPump> pumps = new ArrayList<>();
         Drain drain;
 

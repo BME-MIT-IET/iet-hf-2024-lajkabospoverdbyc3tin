@@ -1,5 +1,4 @@
 import org.assertj.swing.annotation.GUITest;
-import org.assertj.swing.exception.ActionFailedException;
 import org.assertj.swing.fixture.FrameFixture;
 import java.awt.*;
 
