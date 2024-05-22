@@ -1,0 +1,341 @@
+17:03:18: Executing 'jmh'...
+
+Path for java installation 'C:\Users\Krist�f\.jdks\semeru-1.8.0_392' (IntelliJ IDEA) does not contain a java executable
+> Task :compileJava UP-TO-DATE
+> Task :processResources NO-SOURCE
+> Task :classes UP-TO-DATE
+> Task :compileJmhJava UP-TO-DATE
+> Task :processJmhResources NO-SOURCE
+> Task :jmhClasses UP-TO-DATE
+
+> Task :jmh
+# JMH version: 1.37
+# VM version: JDK 21.0.1, Java HotSpot(TM) 64-Bit Server VM, 21.0.1+12-LTS-29
+# VM invoker: C:\Program Files\Java\jdk-21\bin\java.exe
+# VM options: -Dfile.encoding=windows-1250 -Duser.country=HU -Duser.language=hu -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 1 iterations, 10 s each
+# Measurement: 1 iterations, 1 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.PipeBenchmark.connectPipes
+# Parameters: (iterationCount = 100)
+
+# Run progress: 0,00% complete, ETA 00:02:10
+# Fork: 1 of 1
+# Warmup Iteration   1: 942615,143 ops/s
+Iteration   1: 334432,467 ops/s
+
+
+Result "benchmark.PipeBenchmark.connectPipes":
+  334432,467 ops/s
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.1, Java HotSpot(TM) 64-Bit Server VM, 21.0.1+12-LTS-29
+# VM invoker: C:\Program Files\Java\jdk-21\bin\java.exe
+# VM options: -Dfile.encoding=windows-1250 -Duser.country=HU -Duser.language=hu -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 1 iterations, 10 s each
+# Measurement: 1 iterations, 1 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.PipeBenchmark.connectPipes
+# Parameters: (iterationCount = 1000)
+
+# Run progress: 7,69% complete, ETA 00:02:09
+# Fork: 1 of 1
+# Warmup Iteration   1: 88065,023 ops/s
+Iteration   1: 62393,647 ops/s
+
+
+Result "benchmark.PipeBenchmark.connectPipes":
+  62393,647 ops/s
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.1, Java HotSpot(TM) 64-Bit Server VM, 21.0.1+12-LTS-29
+# VM invoker: C:\Program Files\Java\jdk-21\bin\java.exe
+# VM options: -Dfile.encoding=windows-1250 -Duser.country=HU -Duser.language=hu -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 1 iterations, 10 s each
+# Measurement: 1 iterations, 1 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.PipeBenchmark.connectPipes
+# Parameters: (iterationCount = 100000)
+
+# Run progress: 15,38% complete, ETA 00:01:57
+# Fork: 1 of 1
+# Warmup Iteration   1: 192,037 ops/s
+Iteration   1: 226,138 ops/s
+
+
+Result "benchmark.PipeBenchmark.connectPipes":
+  226,138 ops/s
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.1, Java HotSpot(TM) 64-Bit Server VM, 21.0.1+12-LTS-29
+# VM invoker: C:\Program Files\Java\jdk-21\bin\java.exe
+# VM options: -Dfile.encoding=windows-1250 -Duser.country=HU -Duser.language=hu -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 1 iterations, 10 s each
+# Measurement: 1 iterations, 1 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.PipeBenchmark.moveWater
+# Parameters: (iterationCount = 100)
+
+# Run progress: 23,08% complete, ETA 00:01:47
+# Fork: 1 of 1
+# Warmup Iteration   1: 572184,633 ops/s
+Iteration   1: 812189,055 ops/s
+
+
+Result "benchmark.PipeBenchmark.moveWater":
+  812189,055 ops/s
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.1, Java HotSpot(TM) 64-Bit Server VM, 21.0.1+12-LTS-29
+# VM invoker: C:\Program Files\Java\jdk-21\bin\java.exe
+# VM options: -Dfile.encoding=windows-1250 -Duser.country=HU -Duser.language=hu -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 1 iterations, 10 s each
+# Measurement: 1 iterations, 1 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.PipeBenchmark.moveWater
+# Parameters: (iterationCount = 1000)
+
+# Run progress: 30,77% complete, ETA 00:01:36
+# Fork: 1 of 1
+# Warmup Iteration   1: 51402,571 ops/s
+Iteration   1: 55486,721 ops/s
+
+
+Result "benchmark.PipeBenchmark.moveWater":
+  55486,721 ops/s
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.1, Java HotSpot(TM) 64-Bit Server VM, 21.0.1+12-LTS-29
+# VM invoker: C:\Program Files\Java\jdk-21\bin\java.exe
+# VM options: -Dfile.encoding=windows-1250 -Duser.country=HU -Duser.language=hu -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 1 iterations, 10 s each
+# Measurement: 1 iterations, 1 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Throughput, ops/time
+# Benchmark: benchmark.PipeBenchmark.moveWater
+# Parameters: (iterationCount = 100000)
+
+# Run progress: 38,46% complete, ETA 00:01:25
+# Fork: 1 of 1
+# Warmup Iteration   1: 232,658 ops/s
+Iteration   1: 245,468 ops/s
+
+
+Result "benchmark.PipeBenchmark.moveWater":
+  245,468 ops/s
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.1, Java HotSpot(TM) 64-Bit Server VM, 21.0.1+12-LTS-29
+# VM invoker: C:\Program Files\Java\jdk-21\bin\java.exe
+# VM options: -Dfile.encoding=windows-1250 -Duser.country=HU -Duser.language=hu -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 1 iterations, 10 s each
+# Measurement: 1 iterations, 1 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmark.DrainBenchmark.simpleDrain
+
+# Run progress: 46,15% complete, ETA 00:01:14
+# Fork: 1 of 1
+# Warmup Iteration   1: ? 10?? s/op
+Iteration   1: ? 10?? s/op
+
+
+Result "benchmark.DrainBenchmark.simpleDrain":
+  ? 10?? s/op
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.1, Java HotSpot(TM) 64-Bit Server VM, 21.0.1+12-LTS-29
+# VM invoker: C:\Program Files\Java\jdk-21\bin\java.exe
+# VM options: -Dfile.encoding=windows-1250 -Duser.country=HU -Duser.language=hu -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 1 iterations, 10 s each
+# Measurement: 1 iterations, 1 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmark.PipeBenchmark.connectPipes
+# Parameters: (iterationCount = 100)
+
+# Run progress: 53,85% complete, ETA 00:01:04
+# Fork: 1 of 1
+# Warmup Iteration   1: ? 10?? s/op
+Iteration   1: ? 10?? s/op
+
+
+Result "benchmark.PipeBenchmark.connectPipes":
+  ? 10?? s/op
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.1, Java HotSpot(TM) 64-Bit Server VM, 21.0.1+12-LTS-29
+# VM invoker: C:\Program Files\Java\jdk-21\bin\java.exe
+# VM options: -Dfile.encoding=windows-1250 -Duser.country=HU -Duser.language=hu -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 1 iterations, 10 s each
+# Measurement: 1 iterations, 1 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmark.PipeBenchmark.connectPipes
+# Parameters: (iterationCount = 1000)
+
+# Run progress: 61,54% complete, ETA 00:00:53
+# Fork: 1 of 1
+# Warmup Iteration   1: ? 10?? s/op
+Iteration   1: ? 10?? s/op
+
+
+Result "benchmark.PipeBenchmark.connectPipes":
+  ? 10?? s/op
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.1, Java HotSpot(TM) 64-Bit Server VM, 21.0.1+12-LTS-29
+# VM invoker: C:\Program Files\Java\jdk-21\bin\java.exe
+# VM options: -Dfile.encoding=windows-1250 -Duser.country=HU -Duser.language=hu -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 1 iterations, 10 s each
+# Measurement: 1 iterations, 1 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmark.PipeBenchmark.connectPipes
+# Parameters: (iterationCount = 100000)
+
+# Run progress: 69,23% complete, ETA 00:00:42
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,005 s/op
+Iteration   1: 0,005 s/op
+
+
+Result "benchmark.PipeBenchmark.connectPipes":
+  0,005 s/op
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.1, Java HotSpot(TM) 64-Bit Server VM, 21.0.1+12-LTS-29
+# VM invoker: C:\Program Files\Java\jdk-21\bin\java.exe
+# VM options: -Dfile.encoding=windows-1250 -Duser.country=HU -Duser.language=hu -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 1 iterations, 10 s each
+# Measurement: 1 iterations, 1 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmark.PipeBenchmark.moveWater
+# Parameters: (iterationCount = 100)
+
+# Run progress: 76,92% complete, ETA 00:00:32
+# Fork: 1 of 1
+# Warmup Iteration   1: ? 10?? s/op
+Iteration   1: ? 10?? s/op
+
+
+Result "benchmark.PipeBenchmark.moveWater":
+  ? 10?? s/op
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.1, Java HotSpot(TM) 64-Bit Server VM, 21.0.1+12-LTS-29
+# VM invoker: C:\Program Files\Java\jdk-21\bin\java.exe
+# VM options: -Dfile.encoding=windows-1250 -Duser.country=HU -Duser.language=hu -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 1 iterations, 10 s each
+# Measurement: 1 iterations, 1 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmark.PipeBenchmark.moveWater
+# Parameters: (iterationCount = 1000)
+
+# Run progress: 84,62% complete, ETA 00:00:21
+# Fork: 1 of 1
+# Warmup Iteration   1: ? 10?? s/op
+Iteration   1: ? 10?? s/op
+
+
+Result "benchmark.PipeBenchmark.moveWater":
+  ? 10?? s/op
+
+
+# JMH version: 1.37
+# VM version: JDK 21.0.1, Java HotSpot(TM) 64-Bit Server VM, 21.0.1+12-LTS-29
+# VM invoker: C:\Program Files\Java\jdk-21\bin\java.exe
+# VM options: -Dfile.encoding=windows-1250 -Duser.country=HU -Duser.language=hu -Duser.variant
+# Blackhole mode: compiler (auto-detected, use -Djmh.blackhole.autoDetect=false to disable)
+# Warmup: 1 iterations, 10 s each
+# Measurement: 1 iterations, 1 ms each
+# Timeout: 10 min per iteration
+# Threads: 1 thread, will synchronize iterations
+# Benchmark mode: Average time, time/op
+# Benchmark: benchmark.PipeBenchmark.moveWater
+# Parameters: (iterationCount = 100000)
+
+# Run progress: 92,31% complete, ETA 00:00:10
+# Fork: 1 of 1
+# Warmup Iteration   1: 0,004 s/op
+Iteration   1: 0,004 s/op
+
+
+Result "benchmark.PipeBenchmark.moveWater":
+  0,004 s/op
+
+
+# Run complete. Total time: 00:02:18
+
+REMEMBER: The numbers below are just data. To gain reusable insights, you need to follow up on
+why the numbers are the way they are. Use profilers (see -prof, -lprof), design factorial
+experiments, perform baseline and negative tests that provide experimental control, make sure
+the benchmarking environment is safe on JVM/OS/HW level, ask for reviews from the domain experts.
+Do not assume the numbers tell you what you want them to tell.
+
+NOTE: Current JVM experimentally supports Compiler Blackholes, and they are in use. Please exercise
+extra caution when trusting the results, look into the generated code to check the benchmark still
+works, and factor in a small probability of new VM bugs. Additionally, while comparisons between
+different JVMs are already problematic, the performance difference caused by different Blackhole
+modes can be very significant. Please make sure you use the consistent Blackhole mode for comparisons.
+
+Benchmark                   (iterationCount)   Mode  Cnt       Score   Error  Units
+PipeBenchmark.connectPipes               100  thrpt       334432,467          ops/s
+PipeBenchmark.connectPipes              1000  thrpt        62393,647          ops/s
+PipeBenchmark.connectPipes            100000  thrpt          226,138          ops/s
+PipeBenchmark.moveWater                  100  thrpt       812189,055          ops/s
+PipeBenchmark.moveWater                 1000  thrpt        55486,721          ops/s
+PipeBenchmark.moveWater               100000  thrpt          245,468          ops/s
+DrainBenchmark.simpleDrain               N/A   avgt           ? 10??           s/op
+PipeBenchmark.connectPipes               100   avgt           ? 10??           s/op
+PipeBenchmark.connectPipes              1000   avgt           ? 10??           s/op
+PipeBenchmark.connectPipes            100000   avgt            0,005           s/op
+PipeBenchmark.moveWater                  100   avgt           ? 10??           s/op
+PipeBenchmark.moveWater                 1000   avgt           ? 10??           s/op
+PipeBenchmark.moveWater               100000   avgt            0,004           s/op
+
+BUILD SUCCESSFUL in 2m 27s
+3 actionable tasks: 1 executed, 2 up-to-date
+17:05:45: Execution finished 'jmh'.
