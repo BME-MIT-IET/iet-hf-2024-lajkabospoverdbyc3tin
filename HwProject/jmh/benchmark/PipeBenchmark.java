@@ -21,7 +21,7 @@ public class PipeBenchmark {
     public static class AlreadyConnectedPipes {
 
 
-        @Param({"1000", "10000", "1000000"})
+        @Param({"100", "1000", "100000"})
         int iterationCount;
 
         Game game;
@@ -92,7 +92,7 @@ public class PipeBenchmark {
     @State(Scope.Thread)
     public static class PipesToConnect {
 
-        @Param({"1000", "10000", "1000000"})
+        @Param({"100", "1000", "100000"})
         int iterationCount;
 
         Game game;

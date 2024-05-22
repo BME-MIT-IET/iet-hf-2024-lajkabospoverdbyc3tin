@@ -3,6 +3,8 @@ package benchmark;
 import org.openjdk.jmh.annotations.*;
 
 import java.io.PrintStream;
+import java.util.concurrent.TimeUnit;
+
 import HwProject.*;
 
 
@@ -35,6 +37,9 @@ public class DrainBenchmark {
 
     @Benchmark
     @BenchmarkMode(Mode.AverageTime)
+    @Warmup(iterations = 1)
+    @Measurement(iterations = 1, time = 1, timeUnit = TimeUnit.MILLISECONDS)
+    @Fork(value = 1)
     public void simpleDrain(GameBenchmarkState gbs) {
 
         gbs.source.step();
