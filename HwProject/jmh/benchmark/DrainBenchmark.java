@@ -1,9 +1,9 @@
 package benchmark;
 
-import benchmark.HelperClasses.TestPipe;
 import org.openjdk.jmh.annotations.*;
-import Game.*;
+
 import java.io.PrintStream;
+import HwProject.*;
 
 
 public class DrainBenchmark {
@@ -12,9 +12,9 @@ public class DrainBenchmark {
     @State(Scope.Thread)
     public static class GameBenchmarkState {
 
-        Game game;
+        HwProject.Game game;
         Source source;
-        TestPipe pipe;
+        BenchmarkTestPipe pipe;
         Drain drain;
 
 
@@ -24,7 +24,7 @@ public class DrainBenchmark {
             Drain.setGame(game);
 
             source = new Source();
-            pipe = new TestPipe();
+            pipe = new BenchmarkTestPipe();
             drain = new Drain();
 
             source.connectPipe(pipe);

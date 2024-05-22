@@ -1,3 +1,5 @@
+import HwProject.*;
+
 public class TestMechanic extends Mechanic{
 
     public TestMechanic(String ID, Field position) {

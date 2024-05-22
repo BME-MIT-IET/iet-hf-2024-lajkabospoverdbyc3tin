@@ -1,13 +1,12 @@
-package benchmark.HelperClasses;
+package benchmark;
 
-import Game.Pump;
-import Game.Pipe;
+import HwProject.*;
 
 /**
  *     Pump subclass for testing, only added setters and getters for each private and protected field
  */
-public class TestPump extends Pump {
-    public TestPump(int maxConnectedPipes) {
+public class BenchmarkTestPump extends Pump {
+    public BenchmarkTestPump(int maxConnectedPipes) {
         super(maxConnectedPipes);
     }
 

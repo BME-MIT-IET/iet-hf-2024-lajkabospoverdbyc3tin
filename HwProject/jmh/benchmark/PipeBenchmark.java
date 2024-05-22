@@ -1,13 +1,12 @@
 package benchmark;
 
-import benchmark.HelperClasses.TestPipe;
-import benchmark.HelperClasses.TestPump;
 import org.openjdk.jmh.annotations.*;
-import Game.*;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+
+import HwProject.*;
 
 
 public class PipeBenchmark {
@@ -27,8 +26,8 @@ public class PipeBenchmark {
 
         Game game;
         Source source;
-        ArrayList<TestPipe> pipes = new ArrayList<TestPipe>();
-        ArrayList<TestPump> pumps = new ArrayList<>();
+        ArrayList<BenchmarkTestPipe> pipes = new ArrayList<BenchmarkTestPipe>();
+        ArrayList<BenchmarkTestPump> pumps = new ArrayList<>();
         Drain drain;
 
 
@@ -40,8 +39,8 @@ public class PipeBenchmark {
 
             source = new Source();
 
-            var pump = new TestPump(2);
-            var lastPipe = new TestPipe();
+            var pump = new BenchmarkTestPump(2);
+            var lastPipe = new BenchmarkTestPipe();
 
             pump.setWaterLevel(10);
             pump.setOutput(lastPipe);
@@ -50,11 +49,11 @@ public class PipeBenchmark {
             pumps.add(pump);
 
             for (int i = 1; i < iterationCount; i++) {
-                pump = new TestPump(2);
+                pump = new BenchmarkTestPump(2);
                 pump.connectPipe(lastPipe);
                 pump.setInput(lastPipe);
 
-                lastPipe = new TestPipe();
+                lastPipe = new BenchmarkTestPipe();
                 pump.connectPipe(lastPipe);
                 pump.setOutput(lastPipe);
 
@@ -63,7 +62,7 @@ public class PipeBenchmark {
 
             }
 
-            pump = new TestPump(2);
+            pump = new BenchmarkTestPump(2);
             pump.connectPipe(lastPipe);
             pump.setInput(lastPipe);
             pumps.add(pump);
@@ -98,8 +97,8 @@ public class PipeBenchmark {
 
         Game game;
         Source source;
-        ArrayList<TestPipe> pipes = new ArrayList<TestPipe>();
-        ArrayList<TestPump> pumps = new ArrayList<>();
+        ArrayList<BenchmarkTestPipe> pipes = new ArrayList<BenchmarkTestPipe>();
+        ArrayList<BenchmarkTestPump> pumps = new ArrayList<>();
         Drain drain;
 
 
@@ -113,10 +112,10 @@ public class PipeBenchmark {
 
 
             for (int i = 0; i < iterationCount; i++) {
-                pumps.add(new TestPump(2));
-                pipes.add(new TestPipe());
+                pumps.add(new BenchmarkTestPump(2));
+                pipes.add(new BenchmarkTestPipe());
             }
-            pumps.add(new TestPump(2));
+            pumps.add(new BenchmarkTestPump(2));
 
 
 
@@ -133,8 +132,8 @@ public class PipeBenchmark {
     @Fork(value = 1)
     public void connectPipes(PipesToConnect ptc) {
 
-        TestPump pump = ptc.pumps.get(0);
-        TestPipe lastPipe = ptc.pipes.get(0);
+        BenchmarkTestPump pump = ptc.pumps.get(0);
+        BenchmarkTestPipe lastPipe = ptc.pipes.get(0);
 
         pump.setOutput(lastPipe);
 

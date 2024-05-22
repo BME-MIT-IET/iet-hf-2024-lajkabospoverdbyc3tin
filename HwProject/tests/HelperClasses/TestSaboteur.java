@@ -1,3 +1,5 @@
+import HwProject.*;
+
 public class TestSaboteur extends Saboteur {
 
     public TestSaboteur(String ID, Field position) {
