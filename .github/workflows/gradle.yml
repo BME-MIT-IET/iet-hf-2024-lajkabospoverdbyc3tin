@@ -15,7 +15,7 @@ on:
 
 jobs:
   build:
-
+  
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -35,10 +35,14 @@ jobs:
       
     - name: Make gradlew executable
       run: chmod +x ./gradlew
-
+    
+    - name: Install dependencies
+        run:|
+          sudo apt install -y xvfb x11-utils libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xfixes0 xdotool
+          
     - name: Setup xvfb for screen 0
       run: Xvfb :1 -screen 0 800x600x32 &
-      
+
     - name: Build with Gradle Wrapper
       run: CI= ./gradlew build
       env:
