@@ -11,9 +11,6 @@ import HwProject.*;
 
 public class PipeBenchmark {
 
-
-
-
     /**
      * Pumpa -> Cső -> Pumpa -> ... -> Pumpa (100000 csővel és 100001 pumpával)
      */
@@ -29,7 +26,6 @@ public class PipeBenchmark {
         ArrayList<BenchmarkTestPipe> pipes = new ArrayList<BenchmarkTestPipe>();
         ArrayList<BenchmarkTestPump> pumps = new ArrayList<>();
         Drain drain;
-
 
         @Setup(Level.Trial)
         public void doBeforeBenchmark() {
@@ -59,19 +55,13 @@ public class PipeBenchmark {
 
                 pumps.add(pump);
                 pipes.add(lastPipe);
-
             }
 
             pump = new BenchmarkTestPump(2);
             pump.connectPipe(lastPipe);
             pump.setInput(lastPipe);
             pumps.add(pump);
-
-
-
         }
-
-
     }
 
     @Benchmark
@@ -85,9 +75,7 @@ public class PipeBenchmark {
             acp.pumps.get(i).step();
             acp.pipes.get(i).step();
         }
-
     }
-
 
     @State(Scope.Thread)
     public static class PipesToConnect {
@@ -101,7 +89,6 @@ public class PipeBenchmark {
         ArrayList<BenchmarkTestPump> pumps = new ArrayList<>();
         Drain drain;
 
-
         @Setup(Level.Trial)
         public void doBeforeBenchmark() {
             game = new Game(new PrintStream(new EmptyOutputStream()));
@@ -109,7 +96,6 @@ public class PipeBenchmark {
             Drain.setGame(game);
 
             source = new Source();
-
 
             for (int i = 0; i < iterationCount; i++) {
                 pumps.add(new BenchmarkTestPump(2));
@@ -121,9 +107,7 @@ public class PipeBenchmark {
 
 
         }
-
     }
-
 
     @Benchmark
     @BenchmarkMode({Mode.AverageTime, Mode.Throughput})
@@ -145,13 +129,9 @@ public class PipeBenchmark {
             lastPipe = ptc.pipes.get(i);
             pump.connectPipe(lastPipe);
             pump.setOutput(lastPipe);
-
         }
 
         ptc.pumps.get(ptc.iterationCount).connectPipe(lastPipe);
         ptc.pumps.get(ptc.iterationCount).setInput(lastPipe);
-
     }
-
-
 }
