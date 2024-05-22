@@ -2,10 +2,16 @@ plugins {
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
     id("application")
+    jacoco
 }
 
 application {
     mainClass.set("src.Graphic")
+}
+
+jacoco {
+    toolVersion = "0.8.11"
+    reportsDirectory = layout.buildDirectory.dir("customJacocoReportDir")
 }
 
 repositories {
@@ -56,6 +62,7 @@ dependencies {
     testImplementation("org.openjdk.jmh:jmh-core:1.35")
 }
 
+
 tasks.test {
     useJUnitPlatform()
 }
@@ -71,7 +78,22 @@ tasks.jar {
 }
 
 tasks.named<Test>("test") {
+    finalizedBy(tasks.jacocoTestReport)
+
     useJUnitPlatform()
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test) // tests are required to run before generating the report
+
+    reports {
+        xml.required = true
+        csv.required = true
+        html.required = true
+        html.outputLocation = layout.buildDirectory.dir("jacoco")
+        xml.outputLocation = layout.buildDirectory.file("/jacoco/jacoco.xml")
+        csv.outputLocation = layout.buildDirectory.file("/jacoco/jacoco.csv")
+    }
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
