@@ -41,7 +41,7 @@ jobs:
           sudo apt install -y xvfb x11-utils libxkbcommon-x11-0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-randr0 libxcb-render-util0 libxcb-xinerama0 libxcb-xfixes0 xdotool
 
     - name: Build with Gradle Wrapper
-      run: xvfb-run CI= ./gradlew build
+      run: CI= xvfb-run ./gradlew build
       
     - name: Tear down xvfb
       run: killall Xvfb
