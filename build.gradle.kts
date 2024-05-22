@@ -2,7 +2,6 @@ plugins {
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
     id("application")
-    id("me.champeau.jmh") version "0.7.2"
 }
 
 application {
@@ -22,13 +21,13 @@ sourceSets  {
     }
     test {
         java {
-            srcDirs("HwProject/tests", "HwProject/tests/HelperClasses")
+            srcDirs("HwProject/tests", "HwProject/tests/HelperClasses", "HwProject/tests/gui")
         }
     }
 
     //Creating JMH sourceSet for benchmark classes
     create("jmh") {
-        java.srcDirs("HwProject/jmh", "HwProject/src")
+        java.srcDirs("HwProject/jmh", "HwProject/src", "HwProject/tests/HelperClasses")
         compileClasspath += sourceSets.main.get().output + sourceSets.main.get().compileClasspath + sourceSets.main.get().runtimeClasspath
         runtimeClasspath += sourceSets.main.get().output + sourceSets.main.get().compileClasspath + sourceSets.main.get().runtimeClasspath
 
@@ -36,7 +35,6 @@ sourceSets  {
 }
 
 dependencies {
-
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     sourceSets.named("main") {

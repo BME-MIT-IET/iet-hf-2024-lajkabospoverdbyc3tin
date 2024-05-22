@@ -1,3 +1,5 @@
+package benchmark;
+
 import java.io.OutputStream;
 import HwProject.*;
 

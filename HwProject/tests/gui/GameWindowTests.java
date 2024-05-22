@@ -1,18 +1,15 @@
-package gui;
-
-
 import org.assertj.swing.annotation.GUITest;
 import org.assertj.swing.exception.ActionFailedException;
 import org.assertj.swing.fixture.FrameFixture;
 import java.awt.*;
 
-import static gui.TestingTools.findButtonByText;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import HwProject.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.opentest4j.AssertionFailedError;
 
 public class GameWindowTests {
     private FrameFixture window;
@@ -23,7 +20,7 @@ public class GameWindowTests {
         var gui = gameController.getFrame();
         window = new FrameFixture(gui);
         window.show(); // shows the frame to test
-        window.button(findButtonByText("Start")).click();
+        window.button(TestingTools.findButtonByText("Start")).click();
     }
 
     @Test
@@ -35,7 +32,7 @@ public class GameWindowTests {
     @Test()
     @GUITest
     public void GameWindowNotResizable() {
-        assertThrows(ActionFailedException.class, () ->{
+        assertThrows(AssertionFailedError.class, () ->{
             var oldSize = window.target().getSize();
             var newSize = new Dimension(oldSize.width + 100, 800);
             window.resizeTo(newSize);
@@ -70,5 +67,6 @@ public class GameWindowTests {
     @AfterEach
     public void tearDown() {
         window.cleanUp();
+        TestCleanup.cleanup();
     }
 }

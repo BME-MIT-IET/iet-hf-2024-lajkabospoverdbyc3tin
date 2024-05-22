@@ -1,5 +1,3 @@
-package gui;
-
 import HwProject.*;
 
 import javax.swing.*;
