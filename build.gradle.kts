@@ -36,8 +36,7 @@ sourceSets  {
 }
 
 dependencies {
-    // This dependency is exported to consumers, that is to say found on their compile classpath.
-    api(libs.commons.math3)
+
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
     sourceSets.named("main") {
@@ -56,6 +55,7 @@ dependencies {
     //AsserJ Swing for GUI tests
     implementation("org.assertj:assertj-swing:3.17.1")
 
+    testImplementation("org.openjdk.jmh:jmh-core:1.35")
 }
 
 tasks.test {
