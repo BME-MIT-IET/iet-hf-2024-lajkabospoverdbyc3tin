@@ -1,6 +1,5 @@
 import HwProject.*;
 import org.assertj.swing.annotation.GUITest;
-import org.assertj.swing.exception.ActionFailedException;
 import org.assertj.swing.fixture.FrameFixture;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,7 +8,6 @@ import org.opentest4j.AssertionFailedError;
 
 import java.awt.*;
 
-import static org.assertj.swing.finder.WindowFinder.findFrame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StartWindowTests {
