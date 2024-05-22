@@ -1,5 +1,3 @@
-package gui;
-
 import org.assertj.swing.core.GenericTypeMatcher;
 
 import javax.swing.*;

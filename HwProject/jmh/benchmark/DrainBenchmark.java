@@ -7,9 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import HwProject.*;
 
-
 public class DrainBenchmark {
-
 
     @State(Scope.Thread)
     public static class GameBenchmarkState {
@@ -18,7 +16,6 @@ public class DrainBenchmark {
         Source source;
         BenchmarkTestPipe pipe;
         Drain drain;
-
 
         @Setup(Level.Trial)
         public void doBeforeEachBenchmark() {
@@ -32,7 +29,6 @@ public class DrainBenchmark {
             source.connectPipe(pipe);
             drain.connectPipe(pipe);
         }
-
     }
 
     @Benchmark

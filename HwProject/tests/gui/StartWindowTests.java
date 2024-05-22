@@ -19,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class StartWindowTests {
     private FrameFixture window;
 
-
     @BeforeEach
     public void setUp() {
         var gameController = new GameControllerUI(new GameModel());
@@ -34,7 +33,6 @@ public class StartWindowTests {
     public void gameStartsWithTitle() {
         window.requireTitle("Sivatagi Vizhalozatok");
     }
-
 
     @Test
     @GUITest
@@ -51,10 +49,7 @@ public class StartWindowTests {
             window.resizeTo(newSize);
             //window.requireSize(oldSize);
         });
-
     }
-
-
 
     @Test
     @GUITest
@@ -83,8 +78,6 @@ public class StartWindowTests {
         window.button().requireText("Start").click();
         window.button(findButtonByText("Done")).requireEnabled().requireVisible();
     }
-
-
 
     @AfterEach
     public void tearDown() {

@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Test;
 public class GameWindowTests {
     private FrameFixture window;
 
-
     @BeforeEach
     public void setUp() {
         var gameController = new GameControllerUI(new GameModel());
@@ -32,7 +31,6 @@ public class GameWindowTests {
     public void gameHasTitle() {
         window.requireTitle("Sivatagi Vizhalozatok");
     }
-
 
     @Test()
     @GUITest
@@ -56,7 +54,6 @@ public class GameWindowTests {
     @GUITest
     public void mechanicClickColor() {
         window.label("Mechanic1").requireVisible().requireText("Mechanic1").click().foreground().requireEqualTo(Color.RED);
-
     }
 
     @Test
@@ -69,11 +66,7 @@ public class GameWindowTests {
     @GUITest
     public void saboteurClickColor() {
         window.label("Saboteur1").requireVisible().requireText("Saboteur1").click().foreground().requireEqualTo(Color.RED);
-
     }
-
-
-
 
     @AfterEach
     public void tearDown() {
