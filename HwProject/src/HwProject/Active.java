@@ -85,24 +85,28 @@ public abstract class Active extends Field
     @Override
     public int connectPipe(Pipe pipe)
     {
-        int error = pipe.connectActive(this);
-        if (error == 0)
-        {
-            connectedPipes.add(pipe);
-            if (debugEnabled)
-            {
-                debugOutput.println(LOG_ACTIVE + this + ": Sikeres felkapcsolas");
+        if (pipe != null) {
+            int error = pipe.connectActive(this);
+            if (error == 0) {
+                connectedPipes.add(pipe);
+                if (debugEnabled) {
+                    debugOutput.println(LOG_ACTIVE + this + ": Sikeres felkapcsolas");
+                }
+                return 0;
+            } else {
+                if (debugEnabled) {
+                    debugOutput.println(LOG_ACTIVE + this + ": Sikertelen cso beallitas");
+                }
+                return error;
             }
-            return 0;
-        }
-        else
-        {
-            if (debugEnabled)
-            {
-                debugOutput.println(LOG_ACTIVE + this + ": Sikertelen cso beallitas");
+        } else {
+            // Handle the case when pipe is null (e.g., log an error or throw an exception)
+            if (debugEnabled) {
+                debugOutput.println(LOG_ACTIVE + this + ": Pipe is null");
             }
-            return error;
+            return 4;
         }
+
     }
 
     /**

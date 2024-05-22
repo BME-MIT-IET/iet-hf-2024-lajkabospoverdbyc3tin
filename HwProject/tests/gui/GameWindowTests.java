@@ -41,7 +41,6 @@ public class GameWindowTests {
             window.resizeTo(newSize);
             window.requireSize(oldSize);
         });
-
     }
 
     @Test
