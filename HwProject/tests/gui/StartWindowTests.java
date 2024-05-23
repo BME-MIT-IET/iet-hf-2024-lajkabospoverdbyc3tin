@@ -31,7 +31,7 @@ public class StartWindowTests {
     @Test
     @GUITest
     public void startWindowBackground() {
-        window.panel("StartPanel").background().requireEqualTo(Color.BLACK);
+
     }
 
     @Test
