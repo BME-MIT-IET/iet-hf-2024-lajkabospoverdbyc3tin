@@ -43,6 +43,20 @@ jobs:
     - name: Build with Gradle Wrapper
       run: CI= xvfb-run ./gradlew build
 
+    - name: Run Coverage
+      run:
+        ./gradlew jacocoTestReport  
+
+    - name: Add coverage to PR
+      id: jacoco
+      uses: madrapps/jacoco-report@v1.6.1
+      with:
+        paths:
+          ${{ github.workspace }}/**/build/reports/jacoco/**/jacoco.xml
+        token: ${{ secrets.ACCESS_TOKEN }}
+        min-coverage-overall: 40
+        min-coverage-changed-files: 45
+
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
     #
